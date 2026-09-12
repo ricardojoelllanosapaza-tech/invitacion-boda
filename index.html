@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Boda Rodrigo & Valeria</title>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@300;400&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <style>
+        /* --- ESTILOS GENERALES --- */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: #1a1a1a;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            overflow: hidden;
+        }
+        .phone {
+            width: 100%;
+            max-width: 420px;
+            height: 100vh;
+            max-height: 900px;
+            background: #fdfbf7;
+            position: relative;
+            overflow-y: auto;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+            box-shadow: 0 0 20px rgba(0,0,0,0.5);
+            border-radius: 20px;
+            border: 8px solid #2c3e2d;
+        }
+        .phone::-webkit-scrollbar { display: none; }
+        .phone { -ms-overflow-style: none; scrollbar-width: none; }
+
+        /* --- SOBRE (PANTALLA DE INICIO) --- */
+        .sobre-screen {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(135deg, #fdfbf7 0%, #f0ebe1 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 100;
+            transition: opacity 0.8s ease, transform 0.8s ease;
+            cursor: pointer;
+            background-image: url('https://www.transparenttextures.com/patterns/cream-paper.png');
+        }
+        .sobre-screen.hidden {
+            opacity: 0;
+            transform: translateY(-100%);
+            pointer-events: none;
+        }
+        .sobre-screen h2 {
+            font-family: 'Great Vibes', cursive;
+            font-size: 2.5rem;
+            color: #4a5d4b;
+            margin-bottom: 20px;
+        }
+        .sobre-screen p {
+            color: #888;
+            font-size: 0.9rem;
+            letter-spacing: 2px;
+            animation: pulse 2s infinite;
+        }
+        .icono-corazon { font-size: 3rem; margin-bottom: 20px; animation: latido 1.5s infinite; }
+
+        /* --- CONTENIDO DE LA INVITACIÓN --- */
+        .invitacion-content {
+            padding: 40px 25px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            background-image: url('https://www.transparenttextures.com/patterns/cream-paper.png');
+            position: relative;
+            z-index: 2;
+        }
+
+        /* --- DECORACIÓN FLORAL FIJA (Bordes) --- */
+        .floral-fija {
+            position: fixed;
+            width: 130px;
+            opacity: 0.8;
+            pointer-events: none;
+            z-index: 1;
+        }
+        .floral-top-left { top: -20px; left: -20px; transform: rotate(180deg); }
+        .floral-top-right { top: -20px; right: -20px; transform: rotate(-90deg); }
+        .floral-bottom-left { bottom: -20px; left: -20px; transform: rotate(90deg); }
+        .floral-bottom-right { bottom: -20px; right: -20px; }
+
+        /* --- SECCIONES --- */
+        .seccion {
+            width: 100%;
+            margin-bottom: 30px;
+            position: relative;
+            z-index: 2;
+        }
+        .seccion h2 {
+            font-family: 'Great Vibes', cursive;
+            font-size: 2.2rem;
+            color: #4a5d4b;
+            margin-bottom: 15px;
+        }
+        .seccion h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.1rem;
+            color: #b89b5e;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+        .seccion p {
+            font-family: 'Playfair Display', serif;
+            font-size: 0.95rem;
+            color: #555;
+            line-height: 1.6;
+            margin-bottom: 10px;
+        }
+        .seccion .destacado {
+            font-family: 'Great Vibes', cursive;
+            font-size: 1.8rem;
+            color: #b89b5e;
+            display: block;
+            margin: 15px 0;
+        }
+
+        /* --- PORTADA --- */
+        .portada { margin-top: 40px; margin-bottom: 50px; }
+        .portada .anillos { margin-bottom: 20px; }
+        .portada .anillos img { width: 120px; height: auto; border-radius: 10px; }
+        .portada .nombres {
+            font-family: 'Great Vibes', cursive;
+            font-size: 3.5rem;
+            color: #3a4a3b;
+            line-height: 1.2;
+        }
+        .portada .ampersand {
+            font-family: 'Great Vibes', cursive;
+            font-size: 2rem;
+            color: #b89b5e;
+            display: block;
+            margin: -5px 0;
+        }
+        .portada .fecha {
+            font-size: 1rem;
+            letter-spacing: 3px;
+            color: #666;
+            margin: 20px 0;
+            border-top: 1px solid #b89b5e;
+            border-bottom: 1px solid #b89b5e;
+            padding: 10px 0;
+            display: inline-block;
+        }
+
+        /* --- VERSÍCULO --- */
+        .versiculo {
+            background: rgba(255,255,255,0.5);
+            padding: 20px;
+            border-radius: 15px;
+            border: 1px solid #e0d8c8;
+            margin-bottom: 40px;
+        }
+        .versiculo p { font-style: italic; font-size: 0.9rem; color: #666; }
+        .versiculo .cita { font-family: 'Playfair Display', serif; font-size: 0.85rem; color: #b89b5e; margin-top: 10px; display: block; }
+
+        /* --- PADRES Y PADRINOS --- */
+        .padres { margin-bottom: 40px; }
+        .padres h3 { font-size: 0.9rem; letter-spacing: 1.5px; margin-top: 20px; margin-bottom: 5px; color: #b89b5e; }
+        .padres p { font-size: 0.9rem; margin-bottom: 2px; color: #555; font-style: italic; }
+
+        /* --- FECHA Y CONTADOR --- */
+        .fecha-bloque { margin: 40px 0; }
+        .fecha-bloque .dia-semana { font-family: 'Playfair Display', serif; font-size: 1rem; color: #666; letter-spacing: 3px; }
+        .fecha-bloque .numero-dia { font-family: 'Playfair Display', serif; font-size: 4rem; color: #b89b5e; line-height: 1; margin: 5px 0; }
+        .fecha-bloque .mes { font-family: 'Playfair Display', serif; font-size: 1.2rem; color: #666; letter-spacing: 3px; }
+        .fecha-bloque .anio { font-family: 'Playfair Display', serif; font-size: 1.5rem; color: #3a4a3b; margin-top: 5px; }
+
+        .countdown {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin: 25px 0;
+            background: rgba(255,255,255,0.7);
+            padding: 15px;
+            border-radius: 15px;
+            border: 1px solid #e0d8c8;
+        }
+        .countdown div { display: flex; flex-direction: column; align-items: center; font-size: 0.65rem; color: #888; text-transform: uppercase; }
+        .countdown span { font-family: 'Playfair Display', serif; font-size: 1.5rem; color: #3a4a3b; font-weight: 600; }
+
+        /* --- CALENDARIO --- */
+        .calendario {
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            margin: 30px 0;
+            border: 1px solid #e0d8c8;
+        }
+        .calendario .mes-nombre { font-family: 'Great Vibes', cursive; font-size: 2rem; color: #b89b5e; margin-bottom: 15px; }
+        .calendario table { width: 100%; border-collapse: collapse; font-family: 'Playfair Display', serif; font-size: 0.85rem; color: #555; }
+        .calendario th { font-weight: 400; color: #b89b5e; padding-bottom: 10px; }
+        .calendario td { padding: 8px 0; }
+        .calendario .dia-resaltado {
+            background: #b89b5e;
+            color: white;
+            border-radius: 50%;
+            display: inline-block;
+            width: 28px;
+            height: 28px;
+            line-height: 28px;
+            text-align: center;
+        }
+
+        /* --- UBICACIONES --- */
+        .ubicacion { margin: 30px 0; }
+        .ubicacion .icono { font-size: 2.5rem; margin-bottom: 10px; }
+        .ubicacion h3 { font-family: 'Playfair Display', serif; font-size: 1.1rem; color: #b89b5e; margin-bottom: 5px; }
+        .ubicacion p { font-size: 0.9rem; color: #555; margin-bottom: 5px; }
+        .btn-ubicacion {
+            display: inline-block;
+            background: #2c3e2d;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 0.8rem;
+            letter-spacing: 1px;
+            margin-top: 10px;
+            transition: background 0.3s;
+        }
+        .btn-ubicacion:hover { background: #4a5d4b; }
+
+        /* --- ITINERARIO --- */
+        .itinerario { margin: 40px 0; text-align: left; }
+        .itinerario h2 { text-align: center; margin-bottom: 30px; }
+        .timeline { position: relative; padding-left: 30px; border-left: 2px solid #b89b5e; }
+        .timeline-item { position: relative; margin-bottom: 30px; }
+        .timeline-item::before {
+            content: '♥';
+            position: absolute;
+            left: -39px;
+            top: 0;
+            color: #b89b5e;
+            font-size: 1.2rem;
+            background: #fdfbf7;
+            padding: 2px;
+        }
+        .timeline-item h4 { font-family: 'Playfair Display', serif; font-size: 1rem; color: #3a4a3b; margin-bottom: 2px; }
+        .timeline-item p { font-size: 0.85rem; color: #888; margin: 0; }
+        .timeline-item .icono-tl { font-size: 1.5rem; float: right; margin-top: -5px; }
+
+        /* --- CÓDIGO DE VESTIMENTA --- */
+        .vestimenta { margin: 40px 0; }
+        .vestimenta .iconos { font-size: 3rem; margin: 15px 0; }
+        .vestimenta h3 { font-family: 'Great Vibes', cursive; font-size: 2rem; color: #b89b5e; }
+        .vestimenta p { font-size: 0.9rem; color: #666; }
+
+        /* --- REGALOS --- */
+        .regalos { margin: 40px 0; background: rgba(255,255,255,0.5); padding: 25px; border-radius: 15px; border: 1px solid #e0d8c8; }
+        .regalos h2 { margin-bottom: 15px; }
+        .regalos .qr { width: 150px; height: 150px; margin: 15px auto; display: block; background: #eee; border-radius: 10px; }
+
+        /* --- HISTORIA --- */
+        .historia { margin: 40px 0; }
+        .historia h2 { margin-bottom: 20px; }
+        .historia .foto-principal { width: 100%; height: 200px; background: #ddd; border-radius: 15px; margin-bottom: 15px; object-fit: cover; }
+        .historia .fotos-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+        .historia .fotos-grid img { width: 100%; height: 120px; object-fit: cover; border-radius: 10px; }
+
+        /* --- CONFIRMACIÓN --- */
+        .confirmacion { margin: 50px 0; text-align: center; }
+        .confirmacion p { font-family: 'Playfair Display', serif; font-size: 1rem; color: #555; margin-bottom: 20px; }
+        .btn-confirmar {
+            display: inline-block;
+            background: #2c3e2d;
+            color: white;
+            padding: 15px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-size: 0.9rem;
+            letter-spacing: 2px;
+            transition: transform 0.3s, background 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+        .btn-confirmar:hover { transform: scale(1.05); background: #4a5d4b; }
+
+        /* --- ANIMACIONES --- */
+        @keyframes latido { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.2); } }
+        @keyframes flotar { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes pulse { 0%, 100% { opacity: 0.5; } 50% { opacity: 1; } }
+        
+        .animar { opacity: 0; animation: fadeIn 1s ease forwards; }
+        .animar:nth-child(1) { animation-delay: 0.2s; }
+        .animar:nth-child(2) { animation-delay: 0.4s; }
+        .animar:nth-child(3) { animation-delay: 0.6s; }
+        .animar:nth-child(4) { animation-delay: 0.8s; }
+        .animar:nth-child(5) { animation-delay: 1.0s; }
+        .animar:nth-child(6) { animation-delay: 1.2s; }
+        .animar:nth-child(7) { animation-delay: 1.4s; }
+        .animar:nth-child(8) { animation-delay: 1.6s; }
+        .animar:nth-child(9) { animation-delay: 1.8s; }
+        .animar:nth-child(10) { animation-delay: 2.0s; }
+        .animar:nth-child(11) { animation-delay: 2.2s; }
+        .animar:nth-child(12) { animation-delay: 2.4s; }
+
+        /* --- REPRODUCTOR DE MÚSICA COMPLETO --- */
+        .music-player {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 90%;
+            max-width: 380px;
+            background: rgba(255,255,255,0.95);
+            border-radius: 20px;
+            padding: 12px 15px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+            cursor: pointer;
+            z-index: 50;
+            backdrop-filter: blur(10px);
+            border: 1px solid #e0d8c8;
+        }
+        .music-player .play-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: #2c3e2d;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+            cursor: pointer;
+            flex-shrink: 0;
+            transition: transform 0.2s;
+        }
+        .music-player .play-btn:hover { transform: scale(1.1); }
+        .music-player .info {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+        .music-player .info .titulo {
+            font-family: 'Great Vibes', cursive;
+            font-size: 1rem;
+            color: #3a4a3b;
+            text-align: left;
+        }
+        .music-player .info .barra {
+            width: 100%;
+            height: 4px;
+            background: #e0d8c8;
+            border-radius: 2px;
+            position: relative;
+            cursor: pointer;
+        }
+        .music-player .info .barra .progreso {
+            height: 100%;
+            background: #b89b5e;
+            border-radius: 2px;
+            width: 0%;
+            transition: width 0.1s;
+        }
+        .music-player .info .tiempos {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.65rem;
+            color: #999;
+        }
+        .music-player .volumen {
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #3a4a3b;
+            font-size: 1rem;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="phone">
+        <!-- PANTALLA 1: EL SOBRE -->
+        <div class="sobre-screen" id="sobreScreen" onclick="abrirInvitacion()">
+            <div class="icono-corazon">💌</div>
+            <h2>Rodrigo & Valeria</h2>
+            <p>TOCA PARA ABRIR</p>
+        </div>
+
+        <!-- CONTENIDO DE LA INVITACIÓN -->
+        <div class="invitacion-content" id="invitacionContent" style="display: none;">
+            
+            <!-- Decoración floral fija (Bordes) - AHORA CON NOMBRE LOCAL -->
+            <img src="rosa.png" class="floral-fija floral-top-left" alt="">
+            <img src="rosa.png" class="floral-fija floral-top-right" alt="">
+            <img src="rosa.png" class="floral-fija floral-bottom-left" alt="">
+            <img src="rosa.png" class="floral-fija floral-bottom-right" alt="">
+
+            <!-- 1. PORTADA -->
+            <section class="seccion portada animar">
+                <h2>Nos Casamos</h2>
+                <div class="anillos">
+                    <!-- ANILLOS CON NOMBRE LOCAL -->
+                    <img src="anillos.jpg" alt="Anillos de Matrimonio">
+                </div>
+                <div class="nombres">
+                    Rodrigo
+                    <span class="ampersand">&</span>
+                    Valeria
+                </div>
+                <div class="fecha">25 . 04 . 2026</div>
+            </section>
+
+            <!-- 2. VERSÍCULO -->
+            <section class="seccion versiculo animar">
+                <p>"Así que no son ya más dos, sino una sola carne; por tanto, lo que Dios ha unido, no lo separe el hombre."</p>
+                <span class="cita">Mateo 19:6</span>
+            </section>
+
+            <!-- 3. PADRES Y PADRINOS -->
+            <section class="seccion padres animar">
+                <p style="font-family: 'Great Vibes', cursive; font-size: 1.8rem; color: #b89b5e;">Con la bendición de Dios, de nuestros queridos padres y amados padrinos</p>
+                <h3>Padres del Novio</h3>
+                <p>Benedicto Rodríguez</p>
+                <p>María Escobar Choque</p>
+                <h3>Padres de la Novia</h3>
+                <p>Justino Subirana</p>
+                <p>Ramona Ordóñez</p>
+                <h3>Padrinos de Anillos</h3>
+                <p>Pedro Parada Montaño</p>
+                <p>Kedry Herbas Yoely Montaño</p>
+                <h3>Padrinos de Civil</h3>
+                <p>Elmer Subirana</p>
+                <p>Arminda Vedia</p>
+            </section>
+
+            <!-- 4. FECHA Y CONTADOR -->
+            <section class="seccion fecha-bloque animar">
+                <p style="font-family: 'Great Vibes', cursive; font-size: 1.8rem; color: #b89b5e;">Acompáñanos este día tan especial</p>
+                <div class="dia-semana">SÁBADO</div>
+                <div class="numero-dia">25</div>
+                <div class="mes">ABRIL</div>
+                <div class="anio">2026</div>
+                <p style="font-family: 'Great Vibes', cursive; font-size: 1.5rem; color: #b89b5e; margin-top: 15px;">Falta para nuestra boda</p>
+                
+                <div class="countdown" id="countdown">
+                    <div><span id="dias">00</span>Días</div>
+                    <div><span id="horas">00</span>Horas</div>
+                    <div><span id="minutos">00</span>Min</div>
+                    <div><span id="segundos">00</span>Seg</div>
+                </div>
+            </section>
+
+            <!-- 5. CALENDARIO -->
+            <section class="seccion calendario animar">
+                <div class="mes-nombre">Abril</div>
+                <table>
+                    <thead>
+                        <tr><th>D</th><th>L</th><th>M</th><th>M</th><th>J</th><th>V</th><th>S</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td></td><td></td><td></td><td>1</td><td>2</td><td>3</td><td>4</td></tr>
+                        <tr><td>5</td><td>6</td><td>7</td><td>8</td><td>9</td><td>10</td><td>11</td></tr>
+                        <tr><td>12</td><td>13</td><td>14</td><td>15</td><td>16</td><td>17</td><td>18</td></tr>
+                        <tr><td>19</td><td>20</td><td>21</td><td>22</td><td>23</td><td>24</td><td><span class="dia-resaltado">25</span></td></tr>
+                        <tr><td>26</td><td>27</td><td>28</td><td>29</td><td>30</td><td></td><td></td></tr>
+                    </tbody>
+                </table>
+            </section>
+
+            <!-- 6. CEREMONIA RELIGIOSA -->
+            <section class="seccion ubicacion animar">
+                <h3>Ceremonia Religiosa</h3>
+                <div class="icono">⛪</div>
+                <p><strong>Dirección</strong></p>
+                <p>Iglesia Católica San Miguel</p>
+                <p>Calle Junín, entre Avenida 20 de Octubre y Plaza España</p>
+                <p><strong>Hora: 16:00</strong></p>
+                <a href="https://maps.google.com/?q=Iglesia+Catolica+San+Miguel" target="_blank" class="btn-ubicacion">📍 VER UBICACIÓN</a>
+            </section>
+
+            <!-- 7. RECEPCIÓN SOCIAL -->
+            <section class="seccion ubicacion animar">
+                <h3>Recepción Social</h3>
+                <div class="icono">🥂</div>
+                <p><strong>Dirección</strong></p>
+                <p>Salón de Eventos Villa Esperanza</p>
+                <p>Av. Hernando Siles 7890, esquina Villa Esperanza</p>
+                <p><strong>Hora: 19:00</strong></p>
+                <a href="https://maps.google.com/?q=Salon+de+Eventos+Villa+Esperanza" target="_blank" class="btn-ubicacion">📍 VER UBICACIÓN</a>
+            </section>
+
+            <!-- 8. ITINERARIO -->
+            <section class="seccion itinerario animar">
+                <h2>Itinerario</h2>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <h4>Ceremonia Religiosa</h4>
+                        <p>16:00</p>
+                        <span class="icono-tl">⛪</span>
+                    </div>
+                    <div class="timeline-item">
+                        <h4>Boda Civil y Recepción</h4>
+                        <p>19:00</p>
+                        <span class="icono-tl">🥂</span>
+                    </div>
+                    <div class="timeline-item">
+                        <h4>Entrada y Vals</h4>
+                        <p>20:00</p>
+                        <span class="icono-tl">💃</span>
+                    </div>
+                    <div class="timeline-item">
+                        <h4>Cena</h4>
+                        <p>21:00</p>
+                        <span class="icono-tl">🍽️</span>
+                    </div>
+                    <div class="timeline-item">
+                        <h4>Lanzamiento del Bouquet</h4>
+                        <p>23:00</p>
+                        <span class="icono-tl">💐</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 9. CÓDIGO DE VESTIMENTA -->
+            <section class="seccion vestimenta animar">
+                <h2>Código de Vestimenta</h2>
+                <div class="iconos">🤵👰</div>
+                <h3>Formal</h3>
+                <p>Vestido para damas, traje para caballeros</p>
+            </section>
+
+            <!-- 10. MESA DE REGALOS -->
+            <section class="seccion regalos animar">
+                <h2>Mesa de Regalos</h2>
+                <p>Su presencia es nuestro mejor regalo. Si desean obsequiarnos algo más, con gusto aceptaremos un detalle mediante QR o en sobres disponibles en el evento.</p>
+                <div class="qr">
+                    <p style="padding-top: 60px; color: #aaa; font-size: 0.8rem;">[Tu código QR aquí]</p>
+                </div>
+                <p style="font-family: 'Great Vibes', cursive; font-size: 1.2rem; color: #b89b5e;">Escanea el código</p>
+            </section>
+
+            <!-- 11. NUESTRA HISTORIA -->
+            <section class="seccion historia animar">
+                <h2>Nuestra Historia</h2>
+                <p style="font-family: 'Playfair Display', serif; font-style: italic;">Cada momento capturado es un tesoro eterno</p>
+                <br>
+                <!-- FOTOS CON NOMBRES LOCALES -->
+                <img src="foto1.jpg" class="foto-principal" alt="Foto principal">
+                <div class="fotos-grid">
+                    <img src="foto2.jpg" alt="Foto 1">
+                    <img src="foto3.jpg" alt="Foto 2">
+                </div>
+            </section>
+
+            <!-- 12. CONFIRMACIÓN -->
+            <section class="seccion confirmacion animar">
+                <p>Nos llena de felicidad poder compartir con ustedes este momento tan único y especial.</p>
+                <p>Esperamos contar con tu presencia</p>
+                <button class="btn-confirmar" onclick="confirmarAsistencia()">💬 CONFIRMAR ASISTENCIA</button>
+                <p style="margin-top: 20px; font-family: 'Great Vibes', cursive; font-size: 1.5rem; color: #b89b5e;">Te esperamos</p>
+                <div class="anillos" style="font-size: 2rem; margin-top: 10px;">💍</div>
+            </section>
+
+        </div>
+
+        <!-- REPRODUCTOR DE MÚSICA COMPLETO -->
+        <div class="music-player" id="musicPlayer">
+            <div class="play-btn" id="playBtn" onclick="toggleMusica(event)">▶️</div>
+            <div class="info">
+                <div class="titulo">Mi Canción Especial</div>
+                <div class="barra" id="barraProgreso" onclick="cambiarProgreso(event)">
+                    <div class="progreso" id="progreso"></div>
+                </div>
+                <div class="tiempos">
+                    <span id="tiempoActual">0:00</span>
+                    <span id="tiempoTotal">0:00</span>
+                </div>
+            </div>
+            <div class="volumen" onclick="toggleSilencio(event)" id="volumenIcon">🔊</div>
+        </div>
+    </div>
+
+    <!-- AUDIO DE FONDO - Reemplaza esta URL por tu canción MP3 -->
+    <audio id="musicaFondo" loop>
+        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+    </audio>
+
+    <script>
+        // --- VARIABLES GLOBALES ---
+        const audio = document.getElementById('musicaFondo');
+        const playBtn = document.getElementById('playBtn');
+        const progreso = document.getElementById('progreso');
+        const tiempoActual = document.getElementById('tiempoActual');
+        const tiempoTotal = document.getElementById('tiempoTotal');
+        const barraProgreso = document.getElementById('barraProgreso');
+        const volumenIcon = document.getElementById('volumenIcon');
+        let reproduciendo = false;
+
+        // --- ABRIR INVITACIÓN ---
+        function abrirInvitacion() {
+            document.getElementById('sobreScreen').classList.add('hidden');
+            document.getElementById('invitacionContent').style.display = 'flex';
+            // Iniciar música automáticamente
+            audio.play().then(() => {
+                reproduciendo = true;
+                playBtn.innerText = '⏸️';
+            }).catch(e => console.log("Autoplay bloqueado por el navegador."));
+            // Cargar duración total
+            audio.addEventListener('loadedmetadata', function() {
+                tiempoTotal.innerText = formatTime(audio.duration);
+            });
+        }
+
+        // --- REPRODUCTOR DE MÚSICA ---
+        function toggleMusica(event) {
+            event.stopPropagation();
+            if (audio.paused) {
+                audio.play();
+                playBtn.innerText = '⏸️';
+            } else {
+                audio.pause();
+                playBtn.innerText = '▶️';
+            }
+        }
+
+        function cambiarProgreso(event) {
+            const rect = barraProgreso.getBoundingClientRect();
+            const clickX = event.clientX - rect.left;
+            const porcentaje = clickX / rect.width;
+            audio.currentTime = porcentaje * audio.duration;
+        }
+
+        function toggleSilencio(event) {
+            event.stopPropagation();
+            if (audio.volume > 0) {
+                audio.volume = 0;
+                volumenIcon.innerText = '🔇';
+            } else {
+                audio.volume = 1;
+                volumenIcon.innerText = '🔊';
+            }
+        }
+
+        // Actualizar barra de progreso y tiempo
+        audio.addEventListener('timeupdate', function() {
+            if (audio.duration) {
+                const porcentaje = (audio.currentTime / audio.duration) * 100;
+                progreso.style.width = porcentaje + '%';
+                tiempoActual.innerText = formatTime(audio.currentTime);
+            }
+        });
+
+        function formatTime(segundos) {
+            const min = Math.floor(segundos / 60);
+            const seg = Math.floor(segundos % 60);
+            return min + ':' + (seg < 10 ? '0' : '') + seg;
+        }
+
+        // --- CUENTA REGRESIVA ---
+        const fechaBoda = new Date("April 25, 2026 16:00:00").getTime();
+        const intervalo = setInterval(function() {
+            const ahora = new Date().getTime();
+            const distancia = fechaBoda - ahora;
+            if (distancia < 0) {
+                clearInterval(intervalo);
+                document.getElementById("countdown").innerHTML = "<div style='font-size:1rem;'>¡Llegó el gran día!</div>";
+                return;
+            }
+            const dias = Math.floor(distancia / (1000 * 60 * 60 * 24));
+            const horas = Math.floor((distancia % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutos = Math.floor((distancia % (1000 * 60 * 60)) / (1000 * 60));
+            const segundos = Math.floor((distancia % (1000 * 60)) / 1000);
+            document.getElementById("dias").innerText = dias.toString().padStart(2, '0');
+            document.getElementById("horas").innerText = horas.toString().padStart(2, '0');
+            document.getElementById("minutos").innerText = minutos.toString().padStart(2, '0');
+            document.getElementById("segundos").innerText = segundos.toString().padStart(2, '0');
+        }, 1000);
+
+        // --- CONFIRMAR ASISTENCIA ---
+        function confirmarAsistencia() {
+            // CAMBIA ESTE NÚMERO POR EL TUYO
+            const telefono = "59170000000"; 
+            const mensaje = encodeURIComponent("¡Hola! Confirmo mi asistencia a la boda de Rodrigo & Valeria. 🎉");
+            window.open(`https://wa.me/${telefono}?text=${mensaje}`, '_blank');
+        }
+
+        // --- EFECTO DE APARICIÓN AL BAJAR (SCROLL) ---
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.seccion').forEach(seccion => {
+            seccion.style.opacity = '0';
+            seccion.style.transform = 'translateY(30px)';
+            seccion.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+            observer.observe(seccion);
+        });
+    </script>
+</body>
+              </html>

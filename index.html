@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Boda Rodrigo & Valeria</title>
+    <title>Boda Posqui & Natt</title>
     <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@300;400&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
     <style>
         /* --- ESTILOS GENERALES --- */
@@ -56,7 +56,7 @@
         .sobre-screen h2 {
             font-family: 'Great Vibes', cursive;
             font-size: 2.5rem;
-            color: #4a5d4b;
+            color: #1a2a4a; /* AZUL MARINO */
             margin-bottom: 20px;
         }
         .sobre-screen p {
@@ -84,7 +84,7 @@
             opacity: 1;
         }
 
-        /* --- DECORACIÓN FLORAL FIJA (Bordes) - NO BAJAN AL HACER SCROLL --- */
+        /* --- DECORACIÓN FLORAL FIJA (Bordes) --- */
         .floral-fija {
             position: fixed;
             width: 110px;
@@ -120,7 +120,7 @@
         .seccion h2 {
             font-family: 'Great Vibes', cursive;
             font-size: 2.2rem;
-            color: #4a5d4b;
+            color: #1a2a4a; /* AZUL MARINO */
             margin-bottom: 15px;
         }
         .seccion h3 {
@@ -144,7 +144,7 @@
         .portada .nos-casamos {
             font-family: 'Great Vibes', cursive;
             font-size: 2.2rem;
-            color: #4a5d4b;
+            color: #1a2a4a; /* AZUL MARINO */
             margin-bottom: 30px;
         }
         .portada .anillos { margin-bottom: 30px; animation: flotar 3s ease-in-out infinite; }
@@ -195,7 +195,7 @@
         .fecha-bloque .dia-semana { font-family: 'Playfair Display', serif; font-size: 1rem; color: #666; letter-spacing: 3px; }
         .fecha-bloque .numero-dia { font-family: 'Playfair Display', serif; font-size: 4rem; color: #b89b5e; line-height: 1; margin: 5px 0; }
         .fecha-bloque .mes { font-family: 'Playfair Display', serif; font-size: 1.2rem; color: #666; letter-spacing: 3px; }
-        .fecha-bloque .anio { font-family: 'Playfair Display', serif; font-size: 1.5rem; color: #3a4a3b; margin-top: 5px; }
+        .fecha-bloque .anio { font-family: 'Playfair Display', serif; font-size: 1.5rem; color: #1a2a4a; margin-top: 5px; }
 
         .countdown {
             display: flex;
@@ -208,7 +208,7 @@
             border: 1px solid #e0d8c8;
         }
         .countdown div { display: flex; flex-direction: column; align-items: center; font-size: 0.65rem; color: #888; text-transform: uppercase; }
-        .countdown span { font-family: 'Playfair Display', serif; font-size: 1.5rem; color: #3a4a3b; font-weight: 600; }
+        .countdown span { font-family: 'Playfair Display', serif; font-size: 1.5rem; color: #1a2a4a; font-weight: 600; }
 
         /* --- CALENDARIO --- */
         .calendario {
@@ -220,12 +220,12 @@
             border: 1px solid #e0d8c8;
             position: relative;
         }
-        .calendario .mes-nombre { font-family: 'Great Vibes', cursive; font-size: 2rem; color: #b89b5e; margin-bottom: 15px; }
+        .calendario .mes-nombre { font-family: 'Great Vibes', cursive; font-size: 2rem; color: #1a2a4a; margin-bottom: 15px; }
         .calendario table { width: 100%; border-collapse: collapse; font-family: 'Playfair Display', serif; font-size: 0.85rem; color: #555; }
-        .calendario th { font-weight: 400; color: #b89b5e; padding-bottom: 10px; }
+        .calendario th { font-weight: 400; color: #1a2a4a; padding-bottom: 10px; }
         .calendario td { padding: 8px 0; }
         .calendario .dia-resaltado {
-            background: #b89b5e;
+            background: #1a2a4a; /* AZUL MARINO */
             color: white;
             border-radius: 50%;
             display: inline-block;
@@ -238,11 +238,11 @@
         /* --- UBICACIONES --- */
         .ubicacion { margin: 20px 25px; position: relative; }
         .ubicacion .icono { font-size: 2.5rem; margin-bottom: 10px; }
-        .ubicacion h3 { font-family: 'Playfair Display', serif; font-size: 1.1rem; color: #b89b5e; margin-bottom: 5px; }
+        .ubicacion h3 { font-family: 'Playfair Display', serif; font-size: 1.1rem; color: #1a2a4a; margin-bottom: 5px; }
         .ubicacion p { font-size: 0.9rem; color: #555; margin-bottom: 5px; }
         .btn-ubicacion {
             display: inline-block;
-            background: #2c3e2d;
+            background: #1a2a4a; /* AZUL MARINO */
             color: white;
             padding: 10px 20px;
             border-radius: 5px;
@@ -252,31 +252,31 @@
             margin-top: 10px;
             transition: background 0.3s;
         }
-        .btn-ubicacion:hover { background: #4a5d4b; }
+        .btn-ubicacion:hover { background: #2a3a5a; }
 
         /* --- ITINERARIO --- */
         .itinerario { margin: 20px 25px; text-align: left; position: relative; }
         .itinerario h2 { text-align: center; margin-bottom: 30px; }
-        .timeline { position: relative; padding-left: 30px; border-left: 2px solid #b89b5e; }
+        .timeline { position: relative; padding-left: 30px; border-left: 2px solid #1a2a4a; }
         .timeline-item { position: relative; margin-bottom: 30px; }
         .timeline-item::before {
             content: '♥';
             position: absolute;
             left: -39px;
             top: 0;
-            color: #b89b5e;
+            color: #1a2a4a;
             font-size: 1.2rem;
             background: #fdfbf7;
             padding: 2px;
         }
-        .timeline-item h4 { font-family: 'Playfair Display', serif; font-size: 1rem; color: #3a4a3b; margin-bottom: 2px; }
+        .timeline-item h4 { font-family: 'Playfair Display', serif; font-size: 1rem; color: #1a2a4a; margin-bottom: 2px; }
         .timeline-item p { font-size: 0.85rem; color: #888; margin: 0; }
         .timeline-item .icono-tl { font-size: 1.5rem; float: right; margin-top: -5px; }
 
         /* --- CÓDIGO DE VESTIMENTA --- */
         .vestimenta { margin: 20px 25px; position: relative; }
         .vestimenta .iconos { font-size: 3rem; margin: 15px 0; }
-        .vestimenta h3 { font-family: 'Great Vibes', cursive; font-size: 2rem; color: #b89b5e; }
+        .vestimenta h3 { font-family: 'Great Vibes', cursive; font-size: 2rem; color: #1a2a4a; }
         .vestimenta p { font-size: 0.9rem; color: #666; }
 
         /* --- REGALOS --- */
@@ -296,7 +296,7 @@
         .confirmacion p { font-family: 'Playfair Display', serif; font-size: 1rem; color: #555; margin-bottom: 20px; }
         .btn-confirmar {
             display: inline-block;
-            background: #2c3e2d;
+            background: #1a2a4a; /* AZUL MARINO */
             color: white;
             padding: 15px 30px;
             border-radius: 30px;
@@ -307,7 +307,7 @@
             border: none;
             cursor: pointer;
         }
-        .btn-confirmar:hover { transform: scale(1.05); background: #4a5d4b; }
+        .btn-confirmar:hover { transform: scale(1.05); background: #2a3a5a; }
 
         /* --- ANIMACIONES --- */
         @keyframes latido { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.2); } }
@@ -322,7 +322,7 @@
         .animar:nth-child(4) { animation-delay: 1.2s; }
         .animar:nth-child(5) { animation-delay: 1.5s; }
 
-        /* --- REPRODUCTOR DE MÚSICA (FIJO Y NO BAJA AL HACER SCROLL) --- */
+        /* --- REPRODUCTOR DE MÚSICA (FIJO) --- */
         .music-player {
             position: fixed;
             bottom: 20px;
@@ -350,12 +350,12 @@
         .music-player .titulo-player {
             font-family: 'Great Vibes', cursive;
             font-size: 1.1rem;
-            color: #3a4a3b;
+            color: #1a2a4a; /* AZUL MARINO */
             display: flex;
             align-items: center;
             gap: 10px;
         }
-        .music-player .titulo-player .mariposa { color: #2c3e2d; font-size: 0.9rem; }
+        .music-player .titulo-player .mariposa { color: #1a2a4a; font-size: 0.9rem; }
         .music-player .subtitulo {
             font-family: 'Playfair Display', serif;
             font-size: 0.65rem;
@@ -379,7 +379,7 @@
         }
         .music-player .barra .progreso {
             height: 100%;
-            background: #2c3e2d;
+            background: #1a2a4a; /* AZUL MARINO */
             border-radius: 2px;
             width: 0%;
         }
@@ -401,11 +401,11 @@
             background: none;
             border: none;
             font-size: 1rem;
-            color: #3a4a3b;
+            color: #1a2a4a; /* AZUL MARINO */
             cursor: pointer;
         }
         .music-player .controles .btn-play {
-            background: #2c3e2d;
+            background: #1a2a4a; /* AZUL MARINO */
             color: white;
             width: 40px;
             height: 40px;
@@ -436,7 +436,7 @@
         <!-- PANTALLA 1: EL SOBRE -->
         <div class="sobre-screen" id="sobreScreen" onclick="abrirInvitacion()">
             <div class="icono-corazon">💌</div>
-            <h2>Rodrigo & Valeria</h2>
+            <h2>Posqui & Natt</h2>
             <p>TOCA PARA ABRIR</p>
         </div>
 
@@ -462,9 +462,9 @@
                     <img src="anillos.jpg" alt="Anillos de Matrimonio">
                 </div>
                 <div class="nombres animar">
-                    Rodrigo
+                    Posqui
                     <span class="ampersand">&</span>
-                    Valeria
+                    Natt
                 </div>
                 <div class="flores-centro animar">
                     <img src="rosa.png" alt="Rosas">
@@ -479,7 +479,7 @@
 
             <!-- 3. PADRES Y PADRINOS -->
             <section class="seccion padres seccion-scroll">
-                <p style="font-family: 'Great Vibes', cursive; font-size: 1.8rem; color: #b89b5e;">Con la bendición de Dios, de nuestros queridos padres y amados padrinos</p>
+                <p style="font-family: 'Great Vibes', cursive; font-size: 1.8rem; color: #1a2a4a;">Con la bendición de Dios, de nuestros queridos padres y amados padrinos</p>
                 <h3>Padres del Novio</h3>
                 <p>Benedicto Rodríguez</p>
                 <p>María Escobar Choque</p>
@@ -496,12 +496,12 @@
 
             <!-- 4. FECHA Y CONTADOR -->
             <section class="seccion fecha-bloque seccion-scroll">
-                <p style="font-family: 'Great Vibes', cursive; font-size: 1.8rem; color: #b89b5e;">Acompáñanos este día tan especial</p>
+                <p style="font-family: 'Great Vibes', cursive; font-size: 1.8rem; color: #1a2a4a;">Acompáñanos este día tan especial</p>
                 <div class="dia-semana">SÁBADO</div>
                 <div class="numero-dia">25</div>
                 <div class="mes">ABRIL</div>
                 <div class="anio">2026</div>
-                <p style="font-family: 'Great Vibes', cursive; font-size: 1.5rem; color: #b89b5e; margin-top: 15px;">Falta para nuestra boda</p>
+                <p style="font-family: 'Great Vibes', cursive; font-size: 1.5rem; color: #1a2a4a; margin-top: 15px;">Falta para nuestra boda</p>
                 <div class="countdown" id="countdown">
                     <div><span id="dias">00</span>Días</div>
                     <div><span id="horas">00</span>Horas</div>
@@ -596,7 +596,7 @@
                 <div class="qr">
                     <p style="padding-top: 60px; color: #aaa; font-size: 0.8rem;">[Tu código QR aquí]</p>
                 </div>
-                <p style="font-family: 'Great Vibes', cursive; font-size: 1.2rem; color: #b89b5e;">Escanea el código</p>
+                <p style="font-family: 'Great Vibes', cursive; font-size: 1.2rem; color: #1a2a4a;">Escanea el código</p>
             </section>
 
             <!-- 11. NUESTRA HISTORIA -->
@@ -616,7 +616,7 @@
                 <p>Nos llena de felicidad poder compartir con ustedes este momento tan único y especial.</p>
                 <p>Esperamos contar con tu presencia</p>
                 <button class="btn-confirmar" onclick="confirmarAsistencia()">💬 CONFIRMAR ASISTENCIA</button>
-                <p style="margin-top: 20px; font-family: 'Great Vibes', cursive; font-size: 1.5rem; color: #b89b5e;">Te esperamos</p>
+                <p style="margin-top: 20px; font-family: 'Great Vibes', cursive; font-size: 1.5rem; color: #1a2a4a;">Te esperamos</p>
                 <div class="anillos" style="font-size: 2rem; margin-top: 10px;">💍</div>
             </section>
 
@@ -629,7 +629,7 @@
                 Mi Canción Especial
                 <span class="mariposa">🦋</span>
             </div>
-            <div class="subtitulo">✨ Una melodía para recordar siempre ✨</div>
+            <div class="subtitulo">✨ Una melodía para recordar siempre divinas✨</div>
             
             <div class="barra-container">
                 <span id="tiempoActual" style="font-size:0.6rem; color:#999;">0:00</span>
@@ -736,9 +736,8 @@
 
         // --- CONFIRMAR ASISTENCIA ---
         function confirmarAsistencia() {
-            // CAMBIA ESTE NÚMERO POR EL TUYO
             const telefono = "59170000000"; 
-            const mensaje = encodeURIComponent("¡Hola! Confirmo mi asistencia a la boda de Rodrigo & Valeria. 🎉");
+            const mensaje = encodeURIComponent("¡Hola! Confirmo mi asistencia a la boda de Posqui & Natt. 🎉");
             window.open(`https://wa.me/${telefono}?text=${mensaje}`, '_blank');
         }
 
@@ -756,4 +755,4 @@
         });
     </script>
 </body>
-    </html>
+</html>

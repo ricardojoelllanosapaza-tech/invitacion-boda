@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nos Casamos - Rodrigo & Valeria</title>
+    <title>Nos Casamos - Oscar & Nathaly</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
     <script>
@@ -13,7 +13,7 @@
                     colors: {
                         crema: '#F8F6F0',
                         dorado: '#C8A951',
-                        verde: '#2C6E49',
+                        verdeOlivo: '#5F734F',
                         gris: '#5A5A5A',
                     },
                     fontFamily: {
@@ -30,7 +30,7 @@
             .borde-dorado { border-image: linear-gradient(90deg, transparent, #C8A951, transparent) 1; }
             .fondo-textura { background-image: url('https://picsum.photos/id/1015/1920/1080'); background-size: cover; background-blend-mode: overlay; }
 
-            /* ✅ BOTÓN CON FLORES POR FUERA */
+            /* BOTÓN CON FLORES POR FUERA */
             .boton-floral {
                 position: relative;
                 display: inline-flex;
@@ -59,7 +59,7 @@
             .boton-floral::before { left: -18px; }
             .boton-floral::after { right: -18px; }
 
-            /* ✅ MARCO QR */
+            /* MARCO QR */
             .marco-qr {
                 background-color: #FFFFFF;
                 border-radius: 1.2rem;
@@ -68,7 +68,7 @@
                 box-shadow: 0 0 12px rgba(200, 169, 81, 0.08);
             }
 
-            /* ✅ LÍNEA DECORATIVA PARA FECHA */
+            /* LÍNEA DECORATIVA FECHA */
             .linea-fecha-detalle {
                 height: 1px;
                 width: 120px;
@@ -76,7 +76,7 @@
                 margin: 0.3rem auto;
             }
 
-            /* ✅ RAMITAS FLORALES DECORATIVAS */
+            /* RAMITAS DECORATIVAS */
             .rama-decor {
                 position: absolute;
                 width: 90px;
@@ -87,7 +87,7 @@
                 pointer-events: none;
             }
 
-            /* ✅ ESTILO ITINERARIO EXACTO */
+            /* ITINERARIO LÍNEA CENTRAL */
             .linea-tiempo {
                 position: relative;
                 max-width: 420px;
@@ -127,6 +127,72 @@
             }
             .contenido-izq { text-align: right; padding-right: 1.5rem; }
             .contenido-der { text-align: left; padding-left: 1.5rem; }
+
+            /* PORTADA INICIAL SIN SOLAPA NI RECTÁNGULO QUE TAPE EL TEXTO */
+            .portada-inicio {
+                background-color: #F3F0EA;
+                background-image: url("https://picsum.photos/id/1016/1200/1800");
+                background-size: cover;
+                background-blend-mode: soft-light;
+                position: relative;
+                overflow: hidden;
+            }
+            .sello-cera {
+                width: 140px;
+                height: 140px;
+                background: radial-gradient(circle at 25% 25%, #8AA870, #6B8254);
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                color: #F3F0EA;
+                font-size: 2.8rem;
+                font-weight: 500;
+                letter-spacing: 2px;
+                box-shadow: 0 4px 14px rgba(0,0,0,0.12), inset 0 -4px 8px rgba(0,0,0,0.15);
+                cursor: pointer;
+                transition: transform 0.3s ease;
+                z-index: 20;
+                border: 1px solid rgba(0,0,0,0.05);
+            }
+            .sello-cera:hover { transform: scale(1.05); }
+
+            /* CAJA DE MÚSICA */
+            .caja-musica {
+                background: rgba(255,255,255,0.55);
+                border-radius: 20px;
+                padding: 1.5rem 1.2rem;
+                width: 100%;
+                max-width: 380px;
+                text-align: center;
+                backdrop-filter: blur(8px);
+                border: 1px solid rgba(200,169,81,0.12);
+                box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+            }
+            .boton-reproducir {
+                width: 52px;
+                height: 52px;
+                background: linear-gradient(135deg, #C8A951, #B08F3C);
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                color: white;
+                font-size: 20px;
+                border: none;
+                cursor: pointer;
+                box-shadow: 0 2px 8px rgba(160,120,30,0.25);
+            }
+            .barra-progreso {
+                height: 4px;
+                background: #E0E0E0;
+                border-radius: 2px;
+                width: 100%;
+                margin-top: 0.6rem;
+                position: relative;
+            }
+
+            .oculto { display: none; }
         }
     </style>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -134,312 +200,433 @@
     <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
 </head>
 <body class="bg-crema min-h-screen font-serif text-gris relative">
-    <!-- Portada -->
-    <section class="min-h-screen flex flex-col items-center justify-center p-6 relative overflow-hidden">
-        <div class="absolute top-0 left-0 w-full h-full opacity-10 fondo-textura"></div>
-        <div class="absolute top-0 left-0 text-dorado text-6xl opacity-20">❀</div>
-        <div class="absolute top-0 right-0 text-dorado text-6xl opacity-20">❀</div>
-        
-        <h2 class="font-cursiva text-[clamp(2.5rem,6vw,4rem)] text-dorado mb-8 text-center">Nos Casamos</h2>
-        
-        <div class="w-40 h-40 rounded-full border-2 border-dorado flex items-center justify-center mb-10 relative">
-            <img src="https://picsum.photos/id/175/200/200" alt="Anillos de boda" class="w-32 h-32 object-contain rounded-full">
-            <div class="absolute -top-2 -right-2 text-dorado text-3xl">✿</div>
-            <div class="absolute -bottom-2 -left-2 text-dorado text-3xl">✿</div>
-        </div>
 
-        <h1 class="font-cursiva text-[clamp(3rem,8vw,5rem)] text-gris mb-2">Rodrigo</h1>
-        <span class="text-dorado text-4xl mb-2">&</span>
-        <h1 class="font-cursiva text-[clamp(3rem,8vw,5rem)] text-gris mb-12">Valeria</h1>
+    <!-- PORTADA INICIAL: SIN SOLAPA, SIN RECTÁNGULO, SOLO TEXTO LIMPIO -->
+    <section id="portada-inicio" class="portada-inicio min-h-screen flex flex-col items-center justify-center p-6 relative">
+        <h1 class="font-serif text-[clamp(2.2rem,6vw,3.5rem)] text-dorado mb-12 tracking-[0.3em] text-center font-bold leading-tight">¡NOS CASAMOS!</h1>
 
-        <div class="bg-white/60 backdrop-blur-sm rounded-xl p-6 w-full max-w-md text-center border border-dorado/30">
-            <p class="font-cursiva text-2xl text-dorado mb-2">🦋 Mi Canción Especial 🦋</p>
-            <p class="text-sm italic">✨ Una melodía para recordar siempre ✨</p>
-            <div class="mt-4 flex items-center justify-center gap-3">
-                <button class="text-dorado text-xl"><i class="fa fa-step-backward"></i></button>
-                <button class="bg-dorado/20 w-12 h-12 rounded-full flex items-center justify-center text-dorado text-xl"><i class="fa fa-heart"></i></button>
-                <button class="text-dorado text-xl"><i class="fa fa-step-forward"></i></button>
+        <div class="relative w-full max-w-md flex flex-col items-center">
+            <!-- Sello interactivo con O&N -->
+            <div id="boton-sello" class="sello-cera mb-10">
+                O<span class="text-lg">&</span>N
             </div>
-            <div class="w-full h-1 bg-dorado/20 rounded-full mt-3">
-                <div class="w-0 h-full bg-dorado rounded-full"></div>
-            </div>
-            <div class="flex justify-between text-xs mt-1">
-                <span>0:00</span>
-                <span>4:36</span>
-            </div>
+
+            <!-- TEXTO COMPLETAMENTE LIBRE, SIN FONDO QUE LO TAPE -->
+            <p class="text-verdeOlivo text-lg uppercase tracking-[0.25em] mb-2 text-center">DALE CLIC AL SELLO</p>
+            <p class="text-verdeOlivo text-lg uppercase tracking-[0.25em] mb-10 text-center">PARA INGRESAR A LA INVITACIÓN</p>
+
+            <p class="text-verdeOlivo text-xl italic mb-2">Atentamente:</p>
+            <p class="font-cursiva text-[clamp(2.2rem,5vw,3.2rem)] text-verdeOlivo">Oscar y Nathaly</p>
         </div>
     </section>
 
-    <!-- Mensaje Bíblico y Padrinos -->
-    <section class="p-8 max-w-3xl mx-auto text-center relative">
-        <div class="absolute left-1/2 -translate-x-1/2 w-3/4 h-px bg-gradient-to-r from-transparent via-dorado to-transparent my-4"></div>
-        
-        <p class="text-lg italic leading-relaxed my-8">
-            "Así que no son ya más dos, sino una sola carne; por tanto, lo que Dios ha unido, no lo separe el hombre."
-        </p>
-        <p class="text-dorado font-semibold mb-10">Mateo 19:6</p>
+    <!-- CONTENIDO PRINCIPAL -->
+    <div id="contenido-principal" class="oculto">
 
-        <h3 class="font-cursiva text-3xl text-dorado mb-8">Con la bendición de Dios, de nuestros queridos padres y amados padrinos</h3>
+        <!-- PORTADA CON CAJA DE MÚSICA -->
+        <section class="min-h-screen flex flex-col items-center justify-center p-6 relative overflow-hidden bg-gradient-to-b from-[#F8F6F0] to-[#F3F0EA]">
+            <div class="absolute top-0 left-0 w-full h-full opacity-5 fondo-textura"></div>
+            <div class="absolute top-8 left-8 text-dorado text-4xl opacity-20">❀</div>
+            <div class="absolute top-8 right-8 text-dorado text-4xl opacity-20">❀</div>
+            
+            <h2 class="font-cursiva text-[clamp(2.8rem,6vw,4.2rem)] text-gris mb-2 text-center relative z-10">Oscar</h2>
+            <span class="text-dorado text-4xl mb-2 relative z-10">&</span>
+            <h2 class="font-cursiva text-[clamp(2.8rem,6vw,4.2rem)] text-gris mb-12 text-center relative z-10">Nathaly</h2>
 
-        <div class="grid md:grid-cols-2 gap-8 mb-12">
-            <div>
-                <h4 class="text-dorado text-xl font-semibold mb-4">Padres del novio</h4>
-                <p class="text-lg">Benedicto Rodríguez</p>
-                <p class="text-lg">María Escobar Choque</p>
+            <!-- CAJA DE MÚSICA -->
+            <div class="caja-musica relative z-10">
+                <p class="font-cursiva text-2xl text-dorado mb-2">🦋 Mi Canción Especial 🦋</p>
+                <p class="text-sm italic text-gris mb-5">✨ Una melodía para recordar siempre ✨</p>
+                
+                <div class="flex items-center justify-between px-3 mb-3">
+                    <button class="text-gris text-lg opacity-70 hover:opacity-100 transition"><i class="fa fa-step-backward"></i></button>
+                    <button class="boton-reproducir">
+                        <i class="fa fa-heart-o"></i>
+                    </button>
+                    <button class="text-gris text-lg opacity-70 hover:opacity-100 transition"><i class="fa fa-step-forward"></i></button>
+                </div>
+
+                <div class="flex justify-between text-xs text-gris px-1 mb-1">
+                    <span>0:00</span>
+                    <span>4:36</span>
+                </div>
+                <div class="barra-progreso"></div>
+
+                <audio class="w-full mt-2 opacity-0 absolute pointer-events-none">
+                    <source src="#" type="audio/mpeg">
+                    Tu navegador no soporta el reproductor de audio.
+                </audio>
             </div>
-            <div>
-                <h4 class="text-dorado text-xl font-semibold mb-4">Padres de la novia</h4>
-                <p class="text-lg">Justino Subirana</p>
-                <p class="text-lg">Ramona Ordóñez</p>
-            </div>
-        </div>
+        </section>
 
-        <div class="grid md:grid-cols-2 gap-8 mb-8">
-            <div>
-                <h4 class="text-dorado text-xl font-semibold mb-4">Padrinos de Anillos</h4>
-                <p class="text-lg">Pedro Parada Montaño</p>
-                <p class="text-lg">Kedry Herbas Yoely Montaño</p>
-            </div>
-            <div>
-                <h4 class="text-dorado text-xl font-semibold mb-4">Padrinos de Civil</h4>
-                <p class="text-lg">Elmer Subirana</p>
-                <p class="text-lg">Arminda Vedia</p>
-            </div>
-        </div>
-    </section>
+        <!-- Mensaje Bíblico y Padrinos -->
+        <section class="p-8 max-w-3xl mx-auto text-center relative">
+            <div class="absolute left-1/2 -translate-x-1/2 w-3/4 h-px bg-gradient-to-r from-transparent via-dorado to-transparent my-4"></div>
+            
+            <p class="text-lg italic leading-relaxed my-8">
+                "Así que no son ya más dos, sino una sola carne; por tanto, lo que Dios ha unido, no lo separe el hombre."
+            </p>
+            <p class="text-dorado font-semibold mb-10">Mateo 19:6</p>
 
-    <!-- ✅ FECHA CON TODOS LOS DETALLES -->
-    <section class="p-8 text-center relative">
-        <!-- Ramitas decorativas en esquinas -->
-        <div class="rama-decor top-0 left-0 rotate-45"></div>
-        <div class="rama-decor top-0 right-0 -rotate-45 transform scale-x-[-1]"></div>
-        <div class="rama-decor bottom-0 left-0 rotate-135"></div>
-        <div class="rama-decor bottom-0 right-0 rotate-[-135] transform scale-x-[-1]"></div>
+            <h3 class="font-cursiva text-3xl text-dorado mb-8">Con la bendición de Dios, de nuestros queridos padres y amados padrinos</h3>
 
-        <h3 class="font-cursiva text-3xl text-dorado mb-4">Acompáñanos este día tan especial</h3>
-        
-        <div class="flex items-center justify-center gap-4 md:gap-10 my-10 relative">
-            <!-- SÁBADO con líneas -->
+            <div class="grid md:grid-cols-2 gap-8 mb-12">
+                <div>
+                    <h4 class="text-dorado text-xl font-semibold mb-4">Padres del novio</h4>
+                    <p class="text-lg">Benedicto Rodríguez</p>
+                    <p class="text-lg">María Escobar Choque</p>
+                </div>
+                <div>
+                    <h4 class="text-dorado text-xl font-semibold mb-4">Padres de la novia</h4>
+                    <p class="text-lg">Justino Subirana</p>
+                    <p class="text-lg">Ramona Ordóñez</p>
+                </div>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8 mb-8">
+                <div>
+                    <h4 class="text-dorado text-xl font-semibold mb-4">Padrinos de Anillos</h4>
+                    <p class="text-lg">Pedro Parada Montaño</p>
+                    <p class="text-lg">Kedry Herbas Yoely Montaño</p>
+                </div>
+                <div>
+                    <h4 class="text-dorado text-xl font-semibold mb-4">Padrinos de Civil</h4>
+                    <p class="text-lg">Elmer Subirana</p>
+                    <p class="text-lg">Arminda Vedia</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECCIÓN: SOLO ADULTOS -->
+        <section class="p-8 max-w-2xl mx-auto text-center relative">
+            <div class="absolute left-1/2 -translate-x-1/2 w-3/4 h-px bg-gradient-to-r from-transparent via-dorado to-transparent my-4"></div>
+
+            <div class="bg-white/80 rounded-3xl p-8 border border-dorado/25 shadow-md relative">
+                <div class="w-16 h-16 mx-auto mb-4 rounded-full border-2 border-verdeOlivo flex items-center justify-center text-verdeOlivo text-2xl">
+                    <i class="fa fa-user-times"></i>
+                </div>
+
+                <h3 class="font-cursiva text-3xl text-verdeOlivo mb-6">Solo Adultos</h3>
+                <div class="w-16 h-px bg-dorado mx-auto mb-6 relative">
+                    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-3 h-3 bg-dorado rotate-45"></div>
+                </div>
+
+                <p class="text-lg leading-relaxed text-gris">
+                    Amamos a sus pequeños con todo el corazón, pero hemos pensado esta celebración como una velada especial solo para adultos. Esperamos que comprendan y aprovechen para disfrutar de una noche libre, bailar y festejar con nosotros.
+                </p>
+                <p class="text-lg leading-relaxed text-gris mt-4 font-semibold italic">
+                    ¡Gracias de corazón por su comprensión!
+                </p>
+            </div>
+        </section>
+
+        <!-- FECHA + CALENDARIO CORREGIDO -->
+        <section class="p-8 text-center relative">
+            <div class="rama-decor top-0 left-0 rotate-45"></div>
+            <div class="rama-decor top-0 right-0 -rotate-45 transform scale-x-[-1]"></div>
+            <div class="rama-decor bottom-0 left-0 rotate-135"></div>
+            <div class="rama-decor bottom-0 right-0 rotate-[-135] transform scale-x-[-1]"></div>
+
+            <h3 class="font-cursiva text-3xl text-dorado mb-4">Acompáñanos este día tan especial</h3>
+            
+            <div class="flex items-center justify-center gap-4 md:gap-10 my-10 relative">
+                <div class="text-center">
+                    <div class="linea-fecha-detalle"></div>
+                    <span class="text-xl font-medium text-gris">SÁBADO</span>
+                    <div class="linea-fecha-detalle"></div>
+                </div>
+
+                <span class="text-7xl font-bold text-dorado">26</span>
+
+                <div class="text-center">
+                    <div class="linea-fecha-detalle"></div>
+                    <span class="text-xl font-medium text-gris">SEPTIEMBRE</span>
+                    <div class="linea-fecha-detalle"></div>
+                </div>
+            </div>
+            <p class="text-2xl mb-8">2026</p>
+
+            <p class="font-cursiva text-2xl text-dorado mb-4">Falta para nuestra boda</p>
+            
+            <div class="relative max-w-md mx-auto mb-10">
+                <div class="absolute left-0 top-1/2 -translate-y-1/2 w-12 h-12 bg-white rounded-full flex items-center justify-center border border-dorado/20">
+                    <img src="https://picsum.photos/id/1068/40/40" alt="flor" class="w-8 h-8 object-contain">
+                </div>
+                <div class="absolute right-0 top-1/2 -translate-y-1/2 w-12 h-12 bg-white rounded-full flex items-center justify-center border border-dorado/20">
+                    <img src="https://picsum.photos/id/1068/40/40" alt="flor" class="w-8 h-8 object-contain">
+                </div>
+                <div class="bg-white/70 rounded-3xl p-6 border border-dorado/30 mx-10">
+                    <div class="flex justify-around text-3xl font-bold text-dorado">
+                        <div id="dias">00 <p class="text-xs font-normal text-gris">DÍAS</p></div>
+                        <div id="horas">00 <p class="text-xs font-normal text-gris">HORAS</p></div>
+                        <div id="minutos">00 <p class="text-xs font-normal text-gris">MINUTOS</p></div>
+                        <div id="segundos">00 <p class="text-xs font-normal text-gris">SEGUNDOS</p></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CALENDARIO CORRECTO: Septiembre 2026 empieza martes 1 -->
+            <div class="relative max-w-sm mx-auto">
+                <div class="rama-decor -bottom-2 -left-2 scale-75"></div>
+                <div class="rama-decor -bottom-2 -right-2 scale-75 transform scale-x-[-1]"></div>
+                <div class="bg-white/70 rounded-3xl p-5 border border-dorado/30 relative z-10">
+                    <h4 class="font-cursiva text-2xl text-dorado mb-4">Septiembre</h4>
+                    <div class="grid grid-cols-7 gap-2 text-center text-sm">
+                        <span class="font-medium text-gris">D</span>
+                        <span class="font-medium text-gris">L</span>
+                        <span class="font-medium text-gris">M</span>
+                        <span class="font-medium text-gris">M</span>
+                        <span class="font-medium text-gris">J</span>
+                        <span class="font-medium text-gris">V</span>
+                        <span class="font-medium text-gris">S</span>
+
+                        <span class="text-transparent">0</span>
+                        <span class="text-transparent">0</span>
+                        <span>1</span>
+                        <span>2</span>
+                        <span>3</span>
+                        <span>4</span>
+                        <span>5</span>
+
+                        <span>6</span>
+                        <span>7</span>
+                        <span>8</span>
+                        <span>9</span>
+                        <span>10</span>
+                        <span>11</span>
+                        <span>12</span>
+
+                        <span>13</span>
+                        <span>14</span>
+                        <span>15</span>
+                        <span>16</span>
+                        <span>17</span>
+                        <span>18</span>
+                        <span>19</span>
+
+                        <span>20</span>
+                        <span>21</span>
+                        <span>22</span>
+                        <span>23</span>
+                        <span>24</span>
+                        <span>25</span>
+                        <span class="bg-dorado text-white rounded-full font-bold">26</span>
+
+                        <span>27</span>
+                        <span>28</span>
+                        <span>29</span>
+                        <span>30</span>
+                        <span class="text-transparent">0</span>
+                        <span class="text-transparent">0</span>
+                        <span class="text-transparent">0</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Ubicaciones -->
+        <section class="p-8 max-w-3xl mx-auto relative">
+            <div class="absolute left-1/2 -translate-x-1/2 w-3/4 h-px bg-gradient-to-r from-transparent via-dorado to-transparent my-4"></div>
+
+            <div class="mb-12 text-center">
+                <h3 class="font-cursiva text-3xl text-dorado mb-4">Ceremonia Religiosa</h3>
+                <div class="text-5xl text-dorado mb-4"><i class="fa fa-church"></i></div>
+                <h4 class="text-xl font-semibold mb-2">Iglesia Católica San Miguel</h4>
+                <p class="italic mb-2">Calle Junín, entre Avenida 20 de Octubre y Plaza España</p>
+                <p class="text-lg font-semibold mb-4">Hora: 16:00</p>
+                <button class="boton-floral mx-auto font-semibold gap-2">
+                    <i class="fa fa-map-marker"></i> VER UBICACIÓN
+                </button>
+            </div>
+
             <div class="text-center">
-                <div class="linea-fecha-detalle"></div>
-                <span class="text-xl font-medium text-gris">SÁBADO</span>
-                <div class="linea-fecha-detalle"></div>
+                <h3 class="font-cursiva text-3xl text-dorado mb-4">Recepción Social</h3>
+                <div class="text-5xl text-dorado mb-4"><i class="fa fa-gift"></i></div>
+                <h4 class="text-xl font-semibold mb-2">Salón de Eventos Villa Esperanza</h4>
+                <p class="italic mb-2">Av. Hernando Siles 7890, esquina Villa Esperanza</p>
+                <p class="text-lg font-semibold mb-4">Hora: 19:00</p>
+                <button class="boton-floral mx-auto font-semibold gap-2">
+                    <i class="fa fa-map-marker"></i> VER UBICACIÓN
+                </button>
             </div>
+        </section>
 
-            <span class="text-7xl font-bold text-dorado">25</span>
+        <!-- ITINERARIO -->
+        <section class="p-8 max-w-3xl mx-auto relative">
+            <div class="absolute left-1/2 -translate-x-1/2 w-3/4 h-px bg-gradient-to-r from-transparent via-dorado to-transparent my-4"></div>
+            
+            <h3 class="font-cursiva text-3xl text-dorado text-center mb-12">ITINERARIO</h3>
 
-            <!-- ABRIL con líneas -->
-            <div class="text-center">
-                <div class="linea-fecha-detalle"></div>
-                <span class="text-xl font-medium text-gris">ABRIL</span>
-                <div class="linea-fecha-detalle"></div>
-            </div>
-        </div>
-        <p class="text-2xl mb-8">2026</p>
-
-        <p class="font-cursiva text-2xl text-dorado mb-4">Falta para nuestra boda</p>
-        
-        <!-- ✅ CONTADOR CON BORDES REDONDEADOS Y FLORES A LOS LADOS -->
-        <div class="relative max-w-md mx-auto mb-10">
-            <div class="absolute left-0 top-1/2 -translate-y-1/2 w-12 h-12 bg-white rounded-full flex items-center justify-center border border-dorado/20">
-                <img src="https://picsum.photos/id/1068/40/40" alt="flor" class="w-8 h-8 object-contain">
-            </div>
-            <div class="absolute right-0 top-1/2 -translate-y-1/2 w-12 h-12 bg-white rounded-full flex items-center justify-center border border-dorado/20">
-                <img src="https://picsum.photos/id/1068/40/40" alt="flor" class="w-8 h-8 object-contain">
-            </div>
-            <div class="bg-white/70 rounded-3xl p-6 border border-dorado/30 mx-10">
-                <div class="flex justify-around text-3xl font-bold text-dorado">
-                    <div>00 <p class="text-xs font-normal text-gris">DÍAS</p></div>
-                    <div>00 <p class="text-xs font-normal text-gris">HORAS</p></div>
-                    <div>00 <p class="text-xs font-normal text-gris">MINUTOS</p></div>
-                    <div>00 <p class="text-xs font-normal text-gris">SEGUNDOS</p></div>
+            <div class="linea-tiempo">
+                <div class="punto-tiempo">
+                    <div class="contenido-izq">
+                        <p class="font-cursiva text-2xl text-dorado">Ceremonia Religiosa</p>
+                        <p class="text-lg">16:00</p>
+                    </div>
+                    <div class="punto-centro"><i class="fa fa-heart"></i></div>
+                    <div class="contenido-der flex justify-center">
+                        <i class="fa fa-church text-4xl text-dorado"></i>
+                    </div>
+                </div>
+                <div class="punto-tiempo">
+                    <div class="contenido-izq flex justify-center">
+                        <i class="fa fa-archway text-4xl text-dorado"></i>
+                    </div>
+                    <div class="punto-centro"><i class="fa fa-heart"></i></div>
+                    <div class="contenido-der">
+                        <p class="font-cursiva text-2xl text-dorado">Boda Civil y Recepción</p>
+                        <p class="text-lg">19:00</p>
+                    </div>
+                </div>
+                <div class="punto-tiempo">
+                    <div class="contenido-izq">
+                        <p class="font-cursiva text-2xl text-dorado">Entrada y Vals</p>
+                        <p class="text-lg">20:00</p>
+                    </div>
+                    <div class="punto-centro"><i class="fa fa-heart"></i></div>
+                    <div class="contenido-der flex justify-center">
+                        <i class="fa fa-users text-4xl text-dorado"></i>
+                    </div>
+                </div>
+                <div class="punto-tiempo">
+                    <div class="contenido-izq flex justify-center">
+                        <i class="fa fa-utensils text-4xl text-dorado"></i>
+                    </div>
+                    <div class="punto-centro"><i class="fa fa-heart"></i></div>
+                    <div class="contenido-der">
+                        <p class="font-cursiva text-2xl text-dorado">Cena</p>
+                        <p class="text-lg">21:00</p>
+                    </div>
+                </div>
+                <div class="punto-tiempo">
+                    <div class="contenido-izq">
+                        <p class="font-cursiva text-2xl text-dorado">Lanzamiento del Bouquet</p>
+                        <p class="text-lg">23:00</p>
+                    </div>
+                    <div class="punto-centro"><i class="fa fa-heart"></i></div>
+                    <div class="contenido-der flex justify-center">
+                        <i class="fa fa-female text-4xl text-dorado"></i>
+                    </div>
                 </div>
             </div>
-        </div>
+        </section>
 
-        <!-- ✅ CALENDARIO CON BORDES Y DECORACIONES -->
-        <div class="relative max-w-sm mx-auto">
-            <div class="rama-decor -bottom-2 -left-2 scale-75"></div>
-            <div class="rama-decor -bottom-2 -right-2 scale-75 transform scale-x-[-1]"></div>
-            <div class="bg-white/70 rounded-3xl p-5 border border-dorado/30 relative z-10">
-                <h4 class="font-cursiva text-2xl text-dorado mb-4">Abril</h4>
-                <div class="grid grid-cols-7 gap-2 text-center text-sm">
-                    <span>D</span><span>L</span><span>M</span><span>M</span><span>J</span><span>V</span><span>S</span>
-                    <span></span><span></span><span></span><span>1</span><span>2</span><span>3</span><span>4</span>
-                    <span>5</span><span>6</span><span>7</span><span>8</span><span>9</span><span>10</span><span>11</span>
-                    <span>12</span><span>13</span><span>14</span><span>15</span><span>16</span><span>17</span><span>18</span>
-                    <span>19</span><span>20</span><span>21</span><span>22</span><span>23</span><span>24</span><span class="bg-dorado text-white rounded-full font-bold">25</span>
-                    <span>26</span><span>27</span><span>28</span><span>29</span><span>30</span><span></span><span></span>
-                </div>
+        <!-- Vestimenta y Regalos -->
+        <section class="p-8 max-w-2xl mx-auto text-center relative">
+            <div class="absolute left-1/2 -translate-x-1/2 w-3/4 h-px bg-gradient-to-r from-transparent via-dorado to-transparent my-4"></div>
+
+            <h3 class="font-cursiva text-3xl text-dorado mb-6">CÓDIGO DE VESTIMENTA</h3>
+            <div class="text-4xl text-dorado mb-4"><i class="fa fa-user-circle-o"></i></div>
+            <p class="text-3xl font-semibold mb-2">Formal</p>
+            <p class="italic mb-12">Vestido para damas, traje para caballeros</p>
+
+            <h3 class="font-cursiva text-3xl text-dorado mb-6">MESA DE REGALOS</h3>
+            <p class="text-lg italic leading-relaxed mb-8">
+                Su presencia es nuestro mejor regalo. Si desean obsequiarnos algo más, con gusto aceptaremos un detalle mediante QR o en sobres disponibles en el evento
+            </p>
+
+            <div class="marco-qr max-w-xs mx-auto mb-4">
+                <img src="https://picsum.photos/id/1051/280/280" alt="Código QR para regalos" class="w-full h-auto rounded-lg">
             </div>
-        </div>
-    </section>
+            <p class="font-cursiva text-2xl text-dorado mb-4">Escanea el código</p>
+            <div class="flex justify-center gap-2 mb-10">
+                <span class="w-2.5 h-2.5 rounded-full bg-dorado/40"></span>
+                <span class="w-2.5 h-2.5 rounded-full bg-dorado/55"></span>
+                <span class="w-2.5 h-2.5 rounded-full bg-dorado/70"></span>
+                <span class="w-2.5 h-2.5 rounded-full bg-dorado/85"></span>
+                <span class="w-2.5 h-2.5 rounded-full bg-dorado"></span>
+            </div>
+        </section>
 
-    <!-- Ubicaciones -->
-    <section class="p-8 max-w-3xl mx-auto relative">
-        <div class="absolute left-1/2 -translate-x-1/2 w-3/4 h-px bg-gradient-to-r from-transparent via-dorado to-transparent my-4"></div>
+        <!-- Nuestra Historia -->
+        <section class="p-8 max-w-3xl mx-auto text-center relative">
+            <div class="absolute left-1/2 -translate-x-1/2 w-3/4 h-px bg-gradient-to-r from-transparent via-dorado to-transparent my-4"></div>
 
-        <div class="mb-12 text-center">
-            <h3 class="font-cursiva text-3xl text-dorado mb-4">Ceremonia Religiosa</h3>
-            <div class="text-5xl text-dorado mb-4"><i class="fa fa-church"></i></div>
-            <h4 class="text-xl font-semibold mb-2">Iglesia Católica San Miguel</h4>
-            <p class="italic mb-2">Calle Junín, entre Avenida 20 de Octubre y Plaza España</p>
-            <p class="text-lg font-semibold mb-4">Hora: 16:00</p>
-            <button class="boton-floral mx-auto font-semibold gap-2">
-                <i class="fa fa-map-marker"></i> VER UBICACIÓN
+            <h3 class="font-cursiva text-3xl text-dorado mb-4">NUESTRA HISTORIA</h3>
+            <p class="text-xl italic mb-8">Cada momento capturado es un tesoro eterno</p>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <img src="https://picsum.photos/id/1025/400/300" alt="Recuerdo 1" class="rounded-xl w-full h-48 object-cover">
+                <img src="https://picsum.photos/id/1040/400/300" alt="Recuerdo 2" class="rounded-xl w-full h-48 object-cover">
+                <img src="https://picsum.photos/id/1047/400/300" alt="Recuerdo 3" class="rounded-xl w-full h-48 object-cover">
+            </div>
+        </section>
+
+        <!-- Mensaje Final y Confirmación -->
+        <section class="p-8 max-w-2xl mx-auto text-center relative">
+            <div class="absolute left-1/2 -translate-x-1/2 w-3/4 h-px bg-gradient-to-r from-transparent via-dorado to-transparent my-4"></div>
+
+            <h3 class="font-cursiva text-3xl text-dorado mb-6">Querida Familia y Amigos</h3>
+
+            <p class="text-lg leading-relaxed mb-4">
+                Nos llena de felicidad poder compartir con ustedes este momento tan único y especial.
+            </p>
+            <p class="text-lg leading-relaxed mb-4">
+                Con la esperanza de que hagamos de este día un recuerdo inolvidable.
+            </p>
+            <p class="text-lg leading-relaxed mb-8">
+                Los esperamos con los corazones llenos de emoción, listos para celebrar el amor y crear memorias que permanezcan siempre en nuestros corazones.
+            </p>
+
+            <p class="font-cursiva text-2xl text-dorado mb-8">Esperamos contar con tu presencia</p>
+
+            <button class="boton-floral mx-auto font-semibold gap-3 mb-12">
+                <i class="fa fa-whatsapp"></i> CONFIRMAR ASISTENCIA
             </button>
-        </div>
 
-        <div class="text-center">
-            <h3 class="font-cursiva text-3xl text-dorado mb-4">Recepción Social</h3>
-            <div class="text-5xl text-dorado mb-4"><i class="fa fa-gift"></i></div>
-            <h4 class="text-xl font-semibold mb-2">Salón de Eventos Villa Esperanza</h4>
-            <p class="italic mb-2">Av. Hernando Siles 7890, esquina Villa Esperanza</p>
-            <p class="text-lg font-semibold mb-4">Hora: 19:00</p>
-            <button class="boton-floral mx-auto font-semibold gap-2">
-                <i class="fa fa-map-marker"></i> VER UBICACIÓN
-            </button>
-        </div>
-    </section>
-
-    <!-- ✅ ITINERARIO CON DISEÑO EXACTO DE LA FOTO -->
-    <section class="p-8 max-w-3xl mx-auto relative">
-        <div class="absolute left-1/2 -translate-x-1/2 w-3/4 h-px bg-gradient-to-r from-transparent via-dorado to-transparent my-4"></div>
-        
-        <h3 class="font-cursiva text-3xl text-dorado text-center mb-12">ITINERARIO</h3>
-
-        <div class="linea-tiempo">
-            <!-- 1 -->
-            <div class="punto-tiempo">
-                <div class="contenido-izq">
-                    <p class="font-cursiva text-2xl text-dorado">Ceremonia Religiosa</p>
-                    <p class="text-lg">16:00</p>
-                </div>
-                <div class="punto-centro"><i class="fa fa-heart"></i></div>
-                <div class="contenido-der flex justify-center">
-                    <i class="fa fa-church text-4xl text-dorado"></i>
-                </div>
+            <p class="font-cursiva text-3xl text-dorado">Te esperamos</p>
+            <div class="w-24 h-24 mx-auto mt-6 rounded-full border-2 border-dorado flex items-center justify-center">
+                <i class="fa fa-ring text-3xl text-dorado"></i>
             </div>
+        </section>
 
-            <!-- 2 -->
-            <div class="punto-tiempo">
-                <div class="contenido-izq flex justify-center">
-                    <i class="fa fa-archway text-4xl text-dorado"></i>
-                </div>
-                <div class="punto-centro"><i class="fa fa-heart"></i></div>
-                <div class="contenido-der">
-                    <p class="font-cursiva text-2xl text-dorado">Boda Civil y Recepción</p>
-                    <p class="text-lg">19:00</p>
-                </div>
-            </div>
+    </div>
 
-            <!-- 3 -->
-            <div class="punto-tiempo">
-                <div class="contenido-izq">
-                    <p class="font-cursiva text-2xl text-dorado">Entrada y Vals</p>
-                    <p class="text-lg">20:00</p>
-                </div>
-                <div class="punto-centro"><i class="fa fa-heart"></i></div>
-                <div class="contenido-der flex justify-center">
-                    <i class="fa fa-users text-4xl text-dorado"></i>
-                </div>
-            </div>
+    <!-- JAVASCRIPT -->
+    <script>
+        // Abrir sección principal al hacer clic en el sello
+        const sello = document.getElementById('boton-sello');
+        const portada = document.getElementById('portada-inicio');
+        const contenido = document.getElementById('contenido-principal');
 
-            <!-- 4 -->
-            <div class="punto-tiempo">
-                <div class="contenido-izq flex justify-center">
-                    <i class="fa fa-utensils text-4xl text-dorado"></i>
-                </div>
-                <div class="punto-centro"><i class="fa fa-heart"></i></div>
-                <div class="contenido-der">
-                    <p class="font-cursiva text-2xl text-dorado">Cena</p>
-                    <p class="text-lg">21:00</p>
-                </div>
-            </div>
+        sello.addEventListener('click', () => {
+            portada.classList.add('oculto');
+            contenido.classList.remove('oculto');
+            window.scrollTo(0,0);
+            iniciarContador();
+        });
 
-            <!-- 5 -->
-            <div class="punto-tiempo">
-                <div class="contenido-izq">
-                    <p class="font-cursiva text-2xl text-dorado">Lanzamiento del Bouquet</p>
-                    <p class="text-lg">23:00</p>
-                </div>
-                <div class="punto-centro"><i class="fa fa-heart"></i></div>
-                <div class="contenido-der flex justify-center">
-                    <i class="fa fa-female text-4xl text-dorado"></i>
-                </div>
-            </div>
-        </div>
-    </section>
+        // Contador hasta el 26 de septiembre de 2026 - Hora Bolivia UTC-4
+        function iniciarContador() {
+            const fechaBoda = new Date('2026-09-26T16:00:00-04:00');
 
-    <!-- Vestimenta y Regalos -->
-    <section class="p-8 max-w-2xl mx-auto text-center relative">
-        <div class="absolute left-1/2 -translate-x-1/2 w-3/4 h-px bg-gradient-to-r from-transparent via-dorado to-transparent my-4"></div>
+            function actualizar() {
+                const ahora = new Date();
+                const diferencia = fechaBoda - ahora;
 
-        <h3 class="font-cursiva text-3xl text-dorado mb-6">CÓDIGO DE VESTIMENTA</h3>
-        <div class="text-4xl text-dorado mb-4"><i class="fa fa-user-circle-o"></i></div>
-        <p class="text-3xl font-semibold mb-2">Formal</p>
-        <p class="italic mb-12">Vestido para damas, traje para caballeros</p>
+                if (diferencia <= 0) {
+                    document.getElementById('dias').innerHTML = '00 <p class="text-xs font-normal text-gris">DÍAS</p>';
+                    document.getElementById('horas').innerHTML = '00 <p class="text-xs font-normal text-gris">HORAS</p>';
+                    document.getElementById('minutos').innerHTML = '00 <p class="text-xs font-normal text-gris">MINUTOS</p>';
+                    document.getElementById('segundos').innerHTML = '00 <p class="text-xs font-normal text-gris">SEGUNDOS</p>';
+                    return;
+                }
 
-        <h3 class="font-cursiva text-3xl text-dorado mb-6">MESA DE REGALOS</h3>
-        <p class="text-lg italic leading-relaxed mb-8">
-            Su presencia es nuestro mejor regalo. Si desean obsequiarnos algo más, con gusto aceptaremos un detalle mediante QR o en sobres disponibles en el evento
-        </p>
+                const dias = Math.floor(diferencia / (1000 * 60 * 60 * 24));
+                const horas = Math.floor((diferencia % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutos = Math.floor((diferencia % (1000 * 60 * 60)) / (1000 * 60));
+                const segundos = Math.floor((diferencia % (1000 * 60)) / 1000);
 
-        <!-- SECCIÓN CÓDIGO QR -->
-        <div class="marco-qr max-w-xs mx-auto mb-4">
-            <img src="https://picsum.photos/id/1051/280/280" alt="Código QR para regalos" class="w-full h-auto rounded-lg">
-        </div>
-        <p class="font-cursiva text-2xl text-dorado mb-4">Escanea el código</p>
-        <div class="flex justify-center gap-2 mb-10">
-            <span class="w-2.5 h-2.5 rounded-full bg-dorado/40"></span>
-            <span class="w-2.5 h-2.5 rounded-full bg-dorado/55"></span>
-            <span class="w-2.5 h-2.5 rounded-full bg-dorado/70"></span>
-            <span class="w-2.5 h-2.5 rounded-full bg-dorado/85"></span>
-            <span class="w-2.5 h-2.5 rounded-full bg-dorado"></span>
-        </div>
-    </section>
+                document.getElementById('dias').innerHTML = `${String(dias).padStart(2,'0')} <p class="text-xs font-normal text-gris">DÍAS</p>`;
+                document.getElementById('horas').innerHTML = `${String(horas).padStart(2,'0')} <p class="text-xs font-normal text-gris">HORAS</p>`;
+                document.getElementById('minutos').innerHTML = `${String(minutos).padStart(2,'0')} <p class="text-xs font-normal text-gris">MINUTOS</p>`;
+                document.getElementById('segundos').innerHTML = `${String(segundos).padStart(2,'0')} <p class="text-xs font-normal text-gris">SEGUNDOS</p>`;
+            }
 
-    <!-- Nuestra Historia -->
-    <section class="p-8 max-w-3xl mx-auto text-center relative">
-        <div class="absolute left-1/2 -translate-x-1/2 w-3/4 h-px bg-gradient-to-r from-transparent via-dorado to-transparent my-4"></div>
-
-        <h3 class="font-cursiva text-3xl text-dorado mb-4">NUESTRA HISTORIA</h3>
-        <p class="text-xl italic mb-8">Cada momento capturado es un tesoro eterno</p>
-
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-            <img src="https://picsum.photos/id/1025/400/300" alt="Recuerdo 1" class="rounded-xl w-full h-48 object-cover">
-            <img src="https://picsum.photos/id/1040/400/300" alt="Recuerdo 2" class="rounded-xl w-full h-48 object-cover">
-            <img src="https://picsum.photos/id/1047/400/300" alt="Recuerdo 3" class="rounded-xl w-full h-48 object-cover">
-        </div>
-    </section>
-
-    <!-- Mensaje Final y Confirmación -->
-    <section class="p-8 max-w-2xl mx-auto text-center relative">
-        <div class="absolute left-1/2 -translate-x-1/2 w-3/4 h-px bg-gradient-to-r from-transparent via-dorado to-transparent my-4"></div>
-
-        <h3 class="font-cursiva text-3xl text-dorado mb-6">Querida Familia y Amigos</h3>
-
-        <p class="text-lg leading-relaxed mb-4">
-            Nos llena de felicidad poder compartir con ustedes este momento tan único y especial.
-        </p>
-        <p class="text-lg leading-relaxed mb-4">
-            Con la esperanza de que hagamos de este día un recuerdo inolvidable.
-        </p>
-        <p class="text-lg leading-relaxed mb-8">
-            Los esperamos con los corazones llenos de emoción, listos para celebrar el amor y crear memorias que permanezcan siempre en nuestros corazones.
-        </p>
-
-        <p class="font-cursiva text-2xl text-dorado mb-8">Esperamos contar con tu presencia</p>
-
-        <button class="boton-floral mx-auto font-semibold gap-3 mb-12">
-            <i class="fa fa-whatsapp"></i> CONFIRMAR ASISTENCIA
-        </button>
-
-        <p class="font-cursiva text-3xl text-dorado">Te esperamos</p>
-        <div class="w-24 h-24 mx-auto mt-6 rounded-full border-2 border-dorado flex items-center justify-center">
-            <i class="fa fa-ring text-3xl text-dorado"></i>
-        </div>
-    </section>
+            actualizar();
+            setInterval(actualizar, 1000);
+        }
+    </script>
 
 </body>
 </html>

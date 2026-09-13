@@ -77,20 +77,38 @@
             background-image: url('https://www.transparenttextures.com/patterns/cream-paper.png');
             position: relative;
             z-index: 2;
+            opacity: 0;
+            transition: opacity 1s ease 0.5s;
+        }
+        .invitacion-content.visible {
+            opacity: 1;
         }
 
         /* --- DECORACIÓN FLORAL FIJA (Bordes) --- */
         .floral-fija {
             position: fixed;
-            width: 130px;
-            opacity: 0.9;
+            width: 100px;
+            opacity: 0.25;
             pointer-events: none;
             z-index: 1;
         }
-        .floral-top-left { top: -10px; left: -10px; transform: rotate(180deg); }
-        .floral-top-right { top: -10px; right: -10px; transform: rotate(-90deg); }
-        .floral-bottom-left { bottom: 80px; left: -10px; transform: rotate(90deg); }
-        .floral-bottom-right { bottom: 80px; right: -10px; }
+        .floral-top-left { top: 10px; left: 10px; transform: rotate(180deg); }
+        .floral-top-right { top: 10px; right: 10px; transform: rotate(-90deg); }
+        .floral-bottom-left { bottom: 100px; left: 10px; transform: rotate(90deg); }
+        .floral-bottom-right { bottom: 100px; right: 10px; }
+
+        /* --- DECORACIÓN FLORAL REPETIDA (Para varias secciones) --- */
+        .floral-repetida {
+            width: 80px;
+            opacity: 0.2;
+            position: absolute;
+            pointer-events: none;
+            z-index: 1;
+        }
+        .floral-r1 { top: 20px; left: 10px; transform: rotate(180deg); }
+        .floral-r2 { top: 20px; right: 10px; transform: rotate(-90deg); }
+        .floral-r3 { bottom: 20px; left: 10px; transform: rotate(90deg); }
+        .floral-r4 { bottom: 20px; right: 10px; }
 
         /* --- SECCIONES --- */
         .seccion {
@@ -130,7 +148,14 @@
             margin-bottom: 30px;
         }
         .portada .anillos { margin-bottom: 30px; animation: flotar 3s ease-in-out infinite; }
-        .portada .anillos img { width: 140px; height: auto; border-radius: 50%; box-shadow: 0 5px 20px rgba(0,0,0,0.1); }
+        .portada .anillos img { 
+            width: 140px; 
+            height: auto; 
+            border-radius: 50%; 
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1); 
+            display: block;
+            margin: 0 auto;
+        }
         .portada .nombres {
             font-family: 'Great Vibes', cursive;
             font-size: 4rem;
@@ -155,16 +180,18 @@
             border-radius: 15px;
             border: 1px solid #e0d8c8;
             margin: 20px 25px;
+            position: relative;
         }
         .versiculo p { font-style: italic; font-size: 0.9rem; color: #666; }
         .versiculo .cita { font-family: 'Playfair Display', serif; font-size: 0.85rem; color: #b89b5e; margin-top: 10px; display: block; }
 
         /* --- PADRES Y PADRINOS --- */
+        .padres { position: relative; }
         .padres h3 { font-size: 0.9rem; letter-spacing: 1.5px; margin-top: 20px; margin-bottom: 5px; color: #b89b5e; }
         .padres p { font-size: 0.9rem; margin-bottom: 2px; color: #555; font-style: italic; }
 
         /* --- FECHA Y CONTADOR --- */
-        .fecha-bloque { margin: 20px 25px; }
+        .fecha-bloque { margin: 20px 25px; position: relative; }
         .fecha-bloque .dia-semana { font-family: 'Playfair Display', serif; font-size: 1rem; color: #666; letter-spacing: 3px; }
         .fecha-bloque .numero-dia { font-family: 'Playfair Display', serif; font-size: 4rem; color: #b89b5e; line-height: 1; margin: 5px 0; }
         .fecha-bloque .mes { font-family: 'Playfair Display', serif; font-size: 1.2rem; color: #666; letter-spacing: 3px; }
@@ -191,6 +218,7 @@
             box-shadow: 0 4px 15px rgba(0,0,0,0.05);
             margin: 20px 25px;
             border: 1px solid #e0d8c8;
+            position: relative;
         }
         .calendario .mes-nombre { font-family: 'Great Vibes', cursive; font-size: 2rem; color: #b89b5e; margin-bottom: 15px; }
         .calendario table { width: 100%; border-collapse: collapse; font-family: 'Playfair Display', serif; font-size: 0.85rem; color: #555; }
@@ -208,7 +236,7 @@
         }
 
         /* --- UBICACIONES --- */
-        .ubicacion { margin: 20px 25px; }
+        .ubicacion { margin: 20px 25px; position: relative; }
         .ubicacion .icono { font-size: 2.5rem; margin-bottom: 10px; }
         .ubicacion h3 { font-family: 'Playfair Display', serif; font-size: 1.1rem; color: #b89b5e; margin-bottom: 5px; }
         .ubicacion p { font-size: 0.9rem; color: #555; margin-bottom: 5px; }
@@ -227,7 +255,7 @@
         .btn-ubicacion:hover { background: #4a5d4b; }
 
         /* --- ITINERARIO --- */
-        .itinerario { margin: 20px 25px; text-align: left; }
+        .itinerario { margin: 20px 25px; text-align: left; position: relative; }
         .itinerario h2 { text-align: center; margin-bottom: 30px; }
         .timeline { position: relative; padding-left: 30px; border-left: 2px solid #b89b5e; }
         .timeline-item { position: relative; margin-bottom: 30px; }
@@ -246,25 +274,25 @@
         .timeline-item .icono-tl { font-size: 1.5rem; float: right; margin-top: -5px; }
 
         /* --- CÓDIGO DE VESTIMENTA --- */
-        .vestimenta { margin: 20px 25px; }
+        .vestimenta { margin: 20px 25px; position: relative; }
         .vestimenta .iconos { font-size: 3rem; margin: 15px 0; }
         .vestimenta h3 { font-family: 'Great Vibes', cursive; font-size: 2rem; color: #b89b5e; }
         .vestimenta p { font-size: 0.9rem; color: #666; }
 
         /* --- REGALOS --- */
-        .regalos { margin: 20px 25px; background: rgba(255,255,255,0.5); padding: 25px; border-radius: 15px; border: 1px solid #e0d8c8; }
+        .regalos { margin: 20px 25px; background: rgba(255,255,255,0.5); padding: 25px; border-radius: 15px; border: 1px solid #e0d8c8; position: relative; }
         .regalos h2 { margin-bottom: 15px; }
         .regalos .qr { width: 150px; height: 150px; margin: 15px auto; display: block; background: #eee; border-radius: 10px; }
 
         /* --- HISTORIA --- */
-        .historia { margin: 20px 25px; }
+        .historia { margin: 20px 25px; position: relative; }
         .historia h2 { margin-bottom: 20px; }
         .historia .foto-principal { width: 100%; height: 200px; background: #ddd; border-radius: 15px; margin-bottom: 15px; object-fit: cover; }
         .historia .fotos-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
         .historia .fotos-grid img { width: 100%; height: 120px; object-fit: cover; border-radius: 10px; }
 
         /* --- CONFIRMACIÓN --- */
-        .confirmacion { margin: 20px 25px 120px 25px; text-align: center; }
+        .confirmacion { margin: 20px 25px 120px 25px; text-align: center; position: relative; }
         .confirmacion p { font-family: 'Playfair Display', serif; font-size: 1rem; color: #555; margin-bottom: 20px; }
         .btn-confirmar {
             display: inline-block;
@@ -294,7 +322,7 @@
         .animar:nth-child(4) { animation-delay: 1.2s; }
         .animar:nth-child(5) { animation-delay: 1.5s; }
 
-        /* --- REPRODUCTOR DE MÚSICA (DISEÑO EXACTO A LA IMAGEN) --- */
+        /* --- REPRODUCTOR DE MÚSICA (FIJO Y ESTÁTICO) --- */
         .music-player {
             position: fixed;
             bottom: 20px;
@@ -313,6 +341,11 @@
             z-index: 50;
             backdrop-filter: blur(10px);
             border: 1px solid #e0d8c8;
+            opacity: 0;
+            transition: opacity 1s ease 1s;
+        }
+        .music-player.visible {
+            opacity: 1;
         }
         .music-player .titulo-player {
             font-family: 'Great Vibes', cursive;
@@ -408,9 +441,9 @@
         </div>
 
         <!-- CONTENIDO DE LA INVITACIÓN -->
-        <div class="invitacion-content" id="invitacionContent" style="display: none;">
+        <div class="invitacion-content" id="invitacionContent">
             
-            <!-- Decoración floral fija (Bordes) -->
+            <!-- Decoración floral fija (Bordes) - SIEMPRE VISIBLE CON OPACIDAD -->
             <img src="rosa.png" class="floral-fija floral-top-left" alt="">
             <img src="rosa.png" class="floral-fija floral-top-right" alt="">
             <img src="rosa.png" class="floral-fija floral-bottom-left" alt="">
@@ -583,7 +616,7 @@
 
         </div>
 
-        <!-- REPRODUCTOR DE MÚSICA -->
+        <!-- REPRODUCTOR DE MÚSICA (FIJO Y ESTÁTICO) -->
         <div class="music-player" id="musicPlayer">
             <div class="titulo-player">
                 <span class="mariposa">🦋</span>
@@ -625,10 +658,14 @@
         // --- ABRIR INVITACIÓN ---
         function abrirInvitacion() {
             document.getElementById('sobreScreen').classList.add('hidden');
-            document.getElementById('invitacionContent').style.display = 'flex';
+            document.getElementById('invitacionContent').classList.add('visible');
+            // Mostrar reproductor de música
+            document.getElementById('musicPlayer').classList.add('visible');
+            // Iniciar música automáticamente
             audio.play().then(() => {
                 playBtn.innerText = '⏸️';
             }).catch(e => console.log("Autoplay bloqueado."));
+            // Cargar duración total
             audio.addEventListener('loadedmetadata', function() {
                 tiempoTotal.innerText = formatTime(audio.duration);
             });
@@ -716,4 +753,4 @@
         });
     </script>
 </body>
-                </html>
+</html>

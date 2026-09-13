@@ -56,7 +56,7 @@
         .sobre-screen h2 {
             font-family: 'Great Vibes', cursive;
             font-size: 2.5rem;
-            color: #1a2a4a; /* AZUL MARINO */
+            color: #1a2a4a;
             margin-bottom: 20px;
         }
         .sobre-screen p {
@@ -84,31 +84,53 @@
             opacity: 1;
         }
 
-        /* --- DECORACIÓN FLORAL FIJA (Bordes) --- */
-        .floral-fija {
+        /* --- DECORACIÓN FIJA (NO BAJA AL HACER SCROLL) --- */
+        .decoracion-fija {
             position: fixed;
-            width: 110px;
+            pointer-events: none;
+            z-index: 1;
+        }
+        /* Rosas en las esquinas */
+        .rosa-esquina {
+            width: 100px;
             opacity: 0.35;
-            pointer-events: none;
-            z-index: 1;
         }
-        .floral-top-left { top: 0; left: 0; transform: rotate(180deg); }
-        .floral-top-right { top: 0; right: 0; transform: rotate(-90deg); }
-        .floral-bottom-left { bottom: 110px; left: 0; transform: rotate(90deg); }
-        .floral-bottom-right { bottom: 110px; right: 0; }
-        
-        /* --- ROSAS AL AZAR EN LOS BORDES (FIJAS) --- */
-        .floral-random {
-            position: fixed;
-            width: 70px;
+        .rosa-tl { top: 0; left: 0; transform: rotate(180deg); }
+        .rosa-tr { top: 0; right: 0; transform: rotate(-90deg); }
+        .rosa-bl { bottom: 110px; left: 0; transform: rotate(90deg); }
+        .rosa-br { bottom: 110px; right: 0; }
+
+        /* Rosas al azar en los bordes */
+        .rosa-random {
+            width: 60px;
             opacity: 0.2;
-            pointer-events: none;
+        }
+        .rr-1 { top: 25%; left: -10px; transform: rotate(45deg); }
+        .rr-2 { top: 55%; right: -10px; transform: rotate(-135deg); }
+        .rr-3 { top: 40%; right: -5px; transform: rotate(-45deg); }
+        .rr-4 { bottom: 35%; left: -5px; transform: rotate(135deg); }
+        .rr-5 { top: 15%; right: -10px; transform: rotate(-60deg); }
+        .rr-6 { bottom: 20%; left: -10px; transform: rotate(60deg); }
+
+        /* Líneas decorativas en los bordes */
+        .linea-borde {
+            position: fixed;
+            background: #1a2a4a;
+            opacity: 0.15;
             z-index: 1;
         }
-        .fr-1 { top: 30%; left: -15px; transform: rotate(45deg); }
-        .fr-2 { top: 60%; right: -15px; transform: rotate(-135deg); }
-        .fr-3 { top: 40%; right: -10px; transform: rotate(-45deg); }
-        .fr-4 { bottom: 40%; left: -10px; transform: rotate(135deg); }
+        .linea-izq {
+            left: 5px;
+            top: 15%;
+            width: 2px;
+            height: 70%;
+        }
+        .linea-der {
+            right: 5px;
+            top: 15%;
+            width: 2px;
+            height: 70%;
+        }
 
         /* --- SECCIONES --- */
         .seccion {
@@ -120,13 +142,13 @@
         .seccion h2 {
             font-family: 'Great Vibes', cursive;
             font-size: 2.2rem;
-            color: #1a2a4a; /* AZUL MARINO */
+            color: #1a2a4a;
             margin-bottom: 15px;
         }
         .seccion h3 {
             font-family: 'Playfair Display', serif;
             font-size: 1.1rem;
-            color: #b89b5e;
+            color: #1a2a4a;
             letter-spacing: 2px;
             text-transform: uppercase;
             margin-bottom: 10px;
@@ -139,39 +161,77 @@
             margin-bottom: 10px;
         }
 
-        /* --- PORTADA --- */
-        .portada { padding: 60px 25px 140px 25px; }
+        /* --- DIVISORES DE SECCIÓN --- */
+        .divisor {
+            width: 80%;
+            height: 1px;
+            background: linear-gradient(to right, transparent, #1a2a4a, transparent);
+            margin: 20px auto;
+            position: relative;
+            z-index: 2;
+        }
+        .divisor::before {
+            content: '❦';
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #fdfbf7;
+            padding: 0 10px;
+            color: #1a2a4a;
+            font-size: 1rem;
+        }
+
+        /* --- PORTADA (IDÉNTICA A LA IMAGEN) --- */
+        .portada { padding: 50px 25px 150px 25px; }
         .portada .nos-casamos {
             font-family: 'Great Vibes', cursive;
             font-size: 2.2rem;
-            color: #1a2a4a; /* AZUL MARINO */
-            margin-bottom: 30px;
+            color: #1a2a4a;
+            margin-bottom: 25px;
         }
-        .portada .anillos { margin-bottom: 30px; animation: flotar 3s ease-in-out infinite; }
-        .portada .anillos img { 
-            width: 140px; 
-            height: auto; 
-            border-radius: 50%; 
-            box-shadow: 0 5px 20px rgba(0,0,0,0.1); 
+        .portada .anillos {
+            margin-bottom: 25px;
+            animation: flotar 3s ease-in-out infinite;
+        }
+        .portada .anillos img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.15);
             display: block;
             margin: 0 auto;
+            border: 2px solid #e0d8c8;
+            padding: 5px;
+            background: white;
         }
         .portada .nombres {
             font-family: 'Great Vibes', cursive;
             font-size: 4rem;
             color: #3a4a3b;
             line-height: 1.1;
-            margin: 10px 0;
+            margin: 15px 0;
         }
         .portada .ampersand {
             font-family: 'Great Vibes', cursive;
             font-size: 2.5rem;
             color: #b89b5e;
             display: block;
-            margin: -10px 0;
+            margin: -15px 0;
         }
-        .portada .flores-centro { margin-top: 40px; width: 150px; }
-        .portada .flores-centro img { width: 100%; height: auto; }
+        .portada .flores-centro {
+            margin-top: 30px;
+            width: 180px;
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+        .portada .flores-centro img {
+            width: 80px;
+            height: auto;
+            opacity: 0.9;
+        }
 
         /* --- VERSÍCULO --- */
         .versiculo {
@@ -183,17 +243,17 @@
             position: relative;
         }
         .versiculo p { font-style: italic; font-size: 0.9rem; color: #666; }
-        .versiculo .cita { font-family: 'Playfair Display', serif; font-size: 0.85rem; color: #b89b5e; margin-top: 10px; display: block; }
+        .versiculo .cita { font-family: 'Playfair Display', serif; font-size: 0.85rem; color: #1a2a4a; margin-top: 10px; display: block; }
 
         /* --- PADRES Y PADRINOS --- */
         .padres { position: relative; }
-        .padres h3 { font-size: 0.9rem; letter-spacing: 1.5px; margin-top: 20px; margin-bottom: 5px; color: #b89b5e; }
+        .padres h3 { font-size: 0.9rem; letter-spacing: 1.5px; margin-top: 20px; margin-bottom: 5px; color: #1a2a4a; }
         .padres p { font-size: 0.9rem; margin-bottom: 2px; color: #555; font-style: italic; }
 
         /* --- FECHA Y CONTADOR --- */
         .fecha-bloque { margin: 20px 25px; position: relative; }
         .fecha-bloque .dia-semana { font-family: 'Playfair Display', serif; font-size: 1rem; color: #666; letter-spacing: 3px; }
-        .fecha-bloque .numero-dia { font-family: 'Playfair Display', serif; font-size: 4rem; color: #b89b5e; line-height: 1; margin: 5px 0; }
+        .fecha-bloque .numero-dia { font-family: 'Playfair Display', serif; font-size: 4rem; color: #1a2a4a; line-height: 1; margin: 5px 0; }
         .fecha-bloque .mes { font-family: 'Playfair Display', serif; font-size: 1.2rem; color: #666; letter-spacing: 3px; }
         .fecha-bloque .anio { font-family: 'Playfair Display', serif; font-size: 1.5rem; color: #1a2a4a; margin-top: 5px; }
 
@@ -225,7 +285,7 @@
         .calendario th { font-weight: 400; color: #1a2a4a; padding-bottom: 10px; }
         .calendario td { padding: 8px 0; }
         .calendario .dia-resaltado {
-            background: #1a2a4a; /* AZUL MARINO */
+            background: #1a2a4a;
             color: white;
             border-radius: 50%;
             display: inline-block;
@@ -242,7 +302,7 @@
         .ubicacion p { font-size: 0.9rem; color: #555; margin-bottom: 5px; }
         .btn-ubicacion {
             display: inline-block;
-            background: #1a2a4a; /* AZUL MARINO */
+            background: #1a2a4a;
             color: white;
             padding: 10px 20px;
             border-radius: 5px;
@@ -292,11 +352,11 @@
         .historia .fotos-grid img { width: 100%; height: 120px; object-fit: cover; border-radius: 10px; }
 
         /* --- CONFIRMACIÓN --- */
-        .confirmacion { margin: 20px 25px 140px 25px; text-align: center; position: relative; }
+        .confirmacion { margin: 20px 25px 150px 25px; text-align: center; position: relative; }
         .confirmacion p { font-family: 'Playfair Display', serif; font-size: 1rem; color: #555; margin-bottom: 20px; }
         .btn-confirmar {
             display: inline-block;
-            background: #1a2a4a; /* AZUL MARINO */
+            background: #1a2a4a;
             color: white;
             padding: 15px 30px;
             border-radius: 30px;
@@ -322,7 +382,7 @@
         .animar:nth-child(4) { animation-delay: 1.2s; }
         .animar:nth-child(5) { animation-delay: 1.5s; }
 
-        /* --- REPRODUCTOR DE MÚSICA (FIJO) --- */
+        /* --- REPRODUCTOR DE MÚSICA (FIJO Y ESTÁTICO) --- */
         .music-player {
             position: fixed;
             bottom: 20px;
@@ -350,7 +410,7 @@
         .music-player .titulo-player {
             font-family: 'Great Vibes', cursive;
             font-size: 1.1rem;
-            color: #1a2a4a; /* AZUL MARINO */
+            color: #1a2a4a;
             display: flex;
             align-items: center;
             gap: 10px;
@@ -379,7 +439,7 @@
         }
         .music-player .barra .progreso {
             height: 100%;
-            background: #1a2a4a; /* AZUL MARINO */
+            background: #1a2a4a;
             border-radius: 2px;
             width: 0%;
         }
@@ -401,11 +461,11 @@
             background: none;
             border: none;
             font-size: 1rem;
-            color: #1a2a4a; /* AZUL MARINO */
+            color: #1a2a4a;
             cursor: pointer;
         }
         .music-player .controles .btn-play {
-            background: #1a2a4a; /* AZUL MARINO */
+            background: #1a2a4a;
             color: white;
             width: 40px;
             height: 40px;
@@ -442,18 +502,25 @@
 
         <!-- CONTENIDO DE LA INVITACIÓN -->
         <div class="invitacion-content" id="invitacionContent">
-            
-            <!-- Decoración floral fija en las esquinas (NO BAJAN) -->
-            <img src="rosa.png" class="floral-fija floral-top-left" alt="">
-            <img src="rosa.png" class="floral-fija floral-top-right" alt="">
-            <img src="rosa.png" class="floral-fija floral-bottom-left" alt="">
-            <img src="rosa.png" class="floral-fija floral-bottom-right" alt="">
 
-            <!-- Rosas al azar en los bordes (FIJAS) -->
-            <img src="rosa.png" class="floral-random fr-1" alt="">
-            <img src="rosa.png" class="floral-random fr-2" alt="">
-            <img src="rosa.png" class="floral-random fr-3" alt="">
-            <img src="rosa.png" class="floral-random fr-4" alt="">
+            <!-- DECORACIÓN FIJA (NO BAJA AL HACER SCROLL) -->
+            <!-- Rosas en las esquinas -->
+            <img src="rosa.png" class="decoracion-fija rosa-esquina rosa-tl" alt="">
+            <img src="rosa.png" class="decoracion-fija rosa-esquina rosa-tr" alt="">
+            <img src="rosa.png" class="decoracion-fija rosa-esquina rosa-bl" alt="">
+            <img src="rosa.png" class="decoracion-fija rosa-esquina rosa-br" alt="">
+            
+            <!-- Rosas al azar en los bordes -->
+            <img src="rosa.png" class="decoracion-fija rosa-random rr-1" alt="">
+            <img src="rosa.png" class="decoracion-fija rosa-random rr-2" alt="">
+            <img src="rosa.png" class="decoracion-fija rosa-random rr-3" alt="">
+            <img src="rosa.png" class="decoracion-fija rosa-random rr-4" alt="">
+            <img src="rosa.png" class="decoracion-fija rosa-random rr-5" alt="">
+            <img src="rosa.png" class="decoracion-fija rosa-random rr-6" alt="">
+
+            <!-- Líneas decorativas en los bordes -->
+            <div class="decoracion-fija linea-borde linea-izq"></div>
+            <div class="decoracion-fija linea-borde linea-der"></div>
 
             <!-- 1. PORTADA -->
             <section class="seccion portada">
@@ -468,14 +535,19 @@
                 </div>
                 <div class="flores-centro animar">
                     <img src="rosa.png" alt="Rosas">
+                    <img src="rosa.png" alt="Rosas">
                 </div>
             </section>
+
+            <div class="divisor"></div>
 
             <!-- 2. VERSÍCULO -->
             <section class="seccion versiculo seccion-scroll">
                 <p>"Así que no son ya más dos, sino una sola carne; por tanto, lo que Dios ha unido, no lo separe el hombre."</p>
                 <span class="cita">Mateo 19:6</span>
             </section>
+
+            <div class="divisor"></div>
 
             <!-- 3. PADRES Y PADRINOS -->
             <section class="seccion padres seccion-scroll">
@@ -494,6 +566,8 @@
                 <p>Arminda Vedia</p>
             </section>
 
+            <div class="divisor"></div>
+
             <!-- 4. FECHA Y CONTADOR -->
             <section class="seccion fecha-bloque seccion-scroll">
                 <p style="font-family: 'Great Vibes', cursive; font-size: 1.8rem; color: #1a2a4a;">Acompáñanos este día tan especial</p>
@@ -509,6 +583,8 @@
                     <div><span id="segundos">00</span>Seg</div>
                 </div>
             </section>
+
+            <div class="divisor"></div>
 
             <!-- 5. CALENDARIO -->
             <section class="seccion calendario seccion-scroll">
@@ -527,6 +603,8 @@
                 </table>
             </section>
 
+            <div class="divisor"></div>
+
             <!-- 6. CEREMONIA RELIGIOSA -->
             <section class="seccion ubicacion seccion-scroll">
                 <h3>Ceremonia Religiosa</h3>
@@ -538,6 +616,8 @@
                 <a href="https://maps.google.com/?q=Iglesia+Catolica+San+Miguel" target="_blank" class="btn-ubicacion">📍 VER UBICACIÓN</a>
             </section>
 
+            <div class="divisor"></div>
+
             <!-- 7. RECEPCIÓN SOCIAL -->
             <section class="seccion ubicacion seccion-scroll">
                 <h3>Recepción Social</h3>
@@ -548,6 +628,8 @@
                 <p><strong>Hora: 19:00</strong></p>
                 <a href="https://maps.google.com/?q=Salon+de+Eventos+Villa+Esperanza" target="_blank" class="btn-ubicacion">📍 VER UBICACIÓN</a>
             </section>
+
+            <div class="divisor"></div>
 
             <!-- 8. ITINERARIO -->
             <section class="seccion itinerario seccion-scroll">
@@ -581,6 +663,8 @@
                 </div>
             </section>
 
+            <div class="divisor"></div>
+
             <!-- 9. CÓDIGO DE VESTIMENTA -->
             <section class="seccion vestimenta seccion-scroll">
                 <h2>Código de Vestimenta</h2>
@@ -588,6 +672,8 @@
                 <h3>Formal</h3>
                 <p>Vestido para damas, traje para caballeros</p>
             </section>
+
+            <div class="divisor"></div>
 
             <!-- 10. MESA DE REGALOS -->
             <section class="seccion regalos seccion-scroll">
@@ -598,6 +684,8 @@
                 </div>
                 <p style="font-family: 'Great Vibes', cursive; font-size: 1.2rem; color: #1a2a4a;">Escanea el código</p>
             </section>
+
+            <div class="divisor"></div>
 
             <!-- 11. NUESTRA HISTORIA -->
             <section class="seccion historia seccion-scroll">
@@ -610,6 +698,8 @@
                     <img src="foto3.jpg" alt="Foto 2">
                 </div>
             </section>
+
+            <div class="divisor"></div>
 
             <!-- 12. CONFIRMACIÓN -->
             <section class="seccion confirmacion seccion-scroll">
@@ -629,7 +719,7 @@
                 Mi Canción Especial
                 <span class="mariposa">🦋</span>
             </div>
-            <div class="subtitulo">✨ Una melodía para recordar siempre divinas✨</div>
+            <div class="subtitulo">✨ Una melodía para recordar siempre ✨</div>
             
             <div class="barra-container">
                 <span id="tiempoActual" style="font-size:0.6rem; color:#999;">0:00</span>
@@ -755,4 +845,4 @@
         });
     </script>
 </body>
-</html>
+                </html>
